@@ -3,176 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PULSE FITNESS • Premium Strength & Conditioning Gym</title>
-  <meta name="description" content="Pulse Fitness is a modern, minimalist fitness and strength club in Indiranagar, Bengaluru. Premium free weights, certified coaches, and transparent memberships.">
+  <title>R/NESS • Redefine Your Limits</title>
+  <meta name="description" content="Premium fitness studio offering elite coaching, results-driven strength workouts, and an inspiring community in Indiranagar, Bengaluru.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- ==========================================================================
-       NAVIGATION
+       CLEAN TOP NAVIGATION
        ========================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
       <a href="#hero" class="brand-logo">
-        <span class="brand-dot"></span>
-        <span>PULSE FITNESS</span>
+        R/NESS<span>.</span>
       </a>
 
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#facilities" class="nav-link">Facilities</a></li>
-          <li><a href="#trainers" class="nav-link">Trainers</a></li>
-          <li><a href="#memberships" class="nav-link">Plans</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#coaches" class="nav-link">Coaches</a></li>
+          <li><a href="#plans" class="nav-link">Memberships</a></li>
+          <li><a href="#visit" class="nav-link">Visit</a></li>
         </ul>
       </nav>
 
-      <div class="nav-actions">
-        <a href="https://wa.me/919876543210?text=Hi%20Pulse%20Fitness!%20I%20would%20like%20to%20book%20a%20free%20gym%20visit." 
-           target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-          💬 WhatsApp
-        </a>
-        <button class="btn btn-accent trigger-modal">
-          Join Now
-        </button>
-        <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Open navigation menu">
-          ☰
-        </button>
-      </div>
+      <a href="#plans" class="nav-cta trigger-modal">
+        Book a Spot
+      </a>
+
+      <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Open menu">
+        ☰
+      </button>
     </div>
   </header>
 
   <!-- Mobile Drawer -->
   <div class="mobile-menu" id="mobileMenu">
     <button id="mobileMenuClose" style="background:none; border:none; color:#fff; font-size:1.6rem; align-self:flex-end; cursor:pointer;">✕</button>
-    <a href="#facilities" class="nav-link">Facilities</a>
-    <a href="#trainers" class="nav-link">Trainers</a>
-    <a href="#memberships" class="nav-link">Plans</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <button class="btn btn-accent trigger-modal" style="width:100%; margin-top:1rem;">Join Now</button>
+    <a href="#features" class="mobile-link nav-link">Features</a>
+    <a href="#coaches" class="mobile-link nav-link">Coaches</a>
+    <a href="#plans" class="mobile-link nav-link">Memberships</a>
+    <a href="#visit" class="mobile-link nav-link">Visit</a>
+    <button class="nav-cta trigger-modal" style="width:100%; margin-top:1rem;">Book a Spot</button>
   </div>
 
   <main>
 
     <!-- ==========================================================================
-         HERO SECTION WITH MULTI-DUMBBELL CURSOR REPULSION CANVAS
+         HERO SECTION WITH FLOATING DUMBBELLS & GOLDEN SPHERES CANVAS
          ========================================================================== -->
     <section class="hero-section" id="hero">
-      <!-- Interactive pushable dumbbells canvas -->
-      <canvas id="dumbbellsCanvas"></canvas>
+      <!-- Interactive canvas with scattered floating 3D dumbbells & gold beads -->
+      <canvas id="dumbbellCanvas"></canvas>
 
       <div class="container hero-content">
-        <div class="hero-badge">
-          Indiranagar, Bengaluru
+        <div class="hero-badge-pill">
+          <span class="pill-dot"></span>
+          <span>R/NESS · HIGH PERFORMANCE STUDIO</span>
         </div>
 
-        <h1 class="hero-title">
-          ELEVATE YOUR<br>
-          <span class="text-accent">STRENGTH.</span>
+        <h1 class="hero-headline">
+          Redefine
+          <em>Your Limits</em>
         </h1>
 
-        <p class="hero-lead">
-          A modern fitness club built for serious training, functional conditioning, and sustainable transformation. Equipped with Olympic platforms, dumbbell racks up to 50 kg, and certified coaching.
-        </p>
-
-        <div class="hero-actions">
-          <button class="btn btn-accent trigger-modal">
-            Explore Memberships
-          </button>
-          <a href="#facilities" class="btn btn-secondary">
-            View Facility
+        <div class="hero-buttons">
+          <a href="#plans" class="btn-pill btn-dark">
+            Explore Plans
           </a>
-        </div>
-
-        <div class="interactive-hint">
-          <span>👆 Move your cursor or click to push the floating dumbbells</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         FACILITIES
-         ========================================================================== -->
-    <section class="section" id="facilities">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">World-Class Equipment</span>
-          <h2 class="section-title">THE FACILITY</h2>
-          <p class="section-desc">Everything you need for strength, hypertrophy, and functional fitness under one roof.</p>
-        </div>
-
-        <div class="facilities-grid">
-          <div class="facility-card">
-            <div class="facility-icon">🏋️‍♂️</div>
-            <h3 class="facility-title">Free Weights Zone</h3>
-            <p class="facility-desc">Complete dumbbell sets ranging from 2.5 kg up to 50 kg, flat and incline benches, and dedicated lifting stations.</p>
-          </div>
-
-          <div class="facility-card">
-            <div class="facility-icon">⚡</div>
-            <h3 class="facility-title">Olympic Racks & Platforms</h3>
-            <p class="facility-desc">Heavy-duty power cages, calibrated steel plates, Olympic competition barbells, and rubberized deadlift drop zones.</p>
-          </div>
-
-          <div class="facility-card">
-            <div class="facility-icon">🏃</div>
-            <h3 class="facility-title">Cardio & Functional Deck</h3>
-            <p class="facility-desc">Curved treadmills, rowers, assault air bikes, battle ropes, and kettlebells for conditioning.</p>
-          </div>
-
-          <div class="facility-card">
-            <div class="facility-icon">🚿</div>
-            <h3 class="facility-title">Locker & Steam Suites</h3>
-            <p class="facility-desc">Clean, secure personal lockers, hot rainfall showers, and a rejuvenating post-workout eucalyptus steam room.</p>
-          </div>
+          <button class="btn-pill btn-light trigger-modal">
+            Book a Spot
+          </button>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         CERTIFIED TRAINERS
+         THE R/NESS DIFFERENCE (COMPACT & SLEEK)
          ========================================================================== -->
-    <section class="section" id="trainers">
+    <section class="section" id="features">
       <div class="container">
         <div class="section-head">
-          <span class="section-tag">Expert Coaching</span>
-          <h2 class="section-title">CERTIFIED COACHES</h2>
-          <p class="section-desc">Experienced trainers committed to proper form, progressive overload, and injury prevention.</p>
+          <span class="section-tag">The Standard</span>
+          <h2 class="section-title">The R/NESS Difference</h2>
+          <p class="section-desc">Science-backed training designed for maximum performance and lasting vitality.</p>
         </div>
 
-        <div class="trainers-grid">
-          <article class="trainer-card">
-            <div class="trainer-image-wrap">
-              <img src="assets/images/trainer-alex.jpg" alt="Coach Rahul Verma">
+        <div class="difference-grid">
+          <div class="difference-card">
+            <div class="card-icon">⚡</div>
+            <h3 class="card-title">Elite Trainers</h3>
+            <p class="card-text">Certified master coaches dedicated to pushing your limits safely and with surgical precision.</p>
+          </div>
+
+          <div class="difference-card">
+            <div class="card-icon">🎯</div>
+            <h3 class="card-title">Proven Results</h3>
+            <p class="card-text">Structured progressive overload periodization engineered for tangible strength and body composition gains.</p>
+          </div>
+
+          <div class="difference-card">
+            <div class="card-icon">🏙️</div>
+            <h3 class="card-title">Urban Energy</h3>
+            <p class="card-text">A modern space equipped with calibrated Eleiko platforms and custom dumbbells up to 50 kg.</p>
+          </div>
+
+          <div class="difference-card">
+            <div class="card-icon">🤝</div>
+            <h3 class="card-title">Strong Community</h3>
+            <p class="card-text">Join an inspiring network of driven individuals who celebrate every milestone together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         COACHES
+         ========================================================================== -->
+    <section class="section" id="coaches" style="background: rgba(16, 18, 23, 0.4);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Our Mentors</span>
+          <h2 class="section-title">Meet The Coaches</h2>
+          <p class="section-desc">Experienced professionals ready to guide your physical peak from day one.</p>
+        </div>
+
+        <div class="coaches-grid">
+          <article class="coach-card">
+            <div class="coach-img">
+              <img src="assets/images/trainer-alex.jpg" alt="Coach Marcus Thorne">
             </div>
-            <div class="trainer-info">
-              <h3 class="trainer-name">Rahul Verma</h3>
-              <div class="trainer-specialty">Head Strength Coach • ACE Certified</div>
-              <p class="trainer-desc">Specializes in powerlifting mechanics, muscle hypertrophy periodization, and barbell technique.</p>
+            <div class="coach-body">
+              <h3 class="coach-name">Marcus Thorne</h3>
+              <div class="coach-role">Head Strength Coach</div>
+              <p class="coach-bio">Specializing in powerlifting biomechanics, bar speed optimization, and dense muscular hypertrophy.</p>
             </div>
           </article>
 
-          <article class="trainer-card">
-            <div class="trainer-image-wrap">
-              <img src="assets/images/trainer-elena.jpg" alt="Coach Priya Nair">
+          <article class="coach-card">
+            <div class="coach-img">
+              <img src="assets/images/trainer-elena.jpg" alt="Coach Elena Rostova">
             </div>
-            <div class="trainer-info">
-              <h3 class="trainer-name">Priya Nair</h3>
-              <div class="trainer-specialty">Functional & Mobility Lead • K-11 Certified</div>
-              <p class="trainer-desc">Focuses on functional movement patterns, core stability, endurance conditioning, and fat loss.</p>
+            <div class="coach-body">
+              <h3 class="coach-name">Elena Rostova</h3>
+              <div class="coach-role">HIIT & Conditioning</div>
+              <p class="coach-bio">Focusing on high-lactate metabolic conditioning, functional movement patterns, and cardiovascular engine building.</p>
             </div>
           </article>
 
-          <article class="trainer-card">
-            <div class="trainer-image-wrap">
+          <article class="coach-card">
+            <div class="coach-img">
               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Coach Sameer Khan">
             </div>
-            <div class="trainer-info">
-              <h3 class="trainer-name">Sameer Khan</h3>
-              <div class="trainer-specialty">Bodybuilding & Transformation Specialist</div>
-              <p class="trainer-desc">Over 9 years guiding transformations with science-backed nutrition plans and high-intensity resistance training.</p>
+            <div class="coach-body">
+              <h3 class="coach-name">Sameer Khan</h3>
+              <div class="coach-role">Transformation Specialist</div>
+              <p class="coach-bio">Over 9 years guiding physique transformations through calibrated resistance work and personalized nutrition blueprints.</p>
             </div>
           </article>
         </div>
@@ -180,123 +167,127 @@
     </section>
 
     <!-- ==========================================================================
-         MEMBERSHIPS (INR - CLEAN & MINIMAL)
+         MEMBERSHIP PLANS (INR ₹ - DIRECT & MINIMAL)
          ========================================================================== -->
-    <section class="section" id="memberships">
+    <section class="section" id="plans">
       <div class="container">
         <div class="section-head">
-          <span class="section-tag">Simple Pricing</span>
-          <h2 class="section-title">MEMBERSHIP PLANS</h2>
-          <p class="section-desc">Transparent plans in Indian Rupees with full facility access and no registration fees.</p>
+          <span class="section-tag">Direct Investment</span>
+          <h2 class="section-title">Membership Plans</h2>
+          <p class="section-desc">Transparent plans in Indian Rupees with full facility privileges and zero initiation fees.</p>
         </div>
 
-        <div class="pricing-grid">
+        <div class="plans-grid">
           <!-- 1 Month -->
-          <div class="pricing-card">
-            <h3 class="pricing-title">1 Month</h3>
-            <p class="pricing-sub">Full access on a flexible monthly basis.</p>
-            <div class="price-wrap">
-              <span class="currency">₹</span>
-              <span class="amount">2,499</span>
-              <span class="period">/ month</span>
+          <div class="plan-card">
+            <h3 class="plan-name">1 Month</h3>
+            <p class="plan-sub">Total month-to-month training flexibility.</p>
+            <div class="price-box">
+              <span class="price-currency">₹</span>
+              <span class="price-value">2,499</span>
+              <span class="price-cycle">/ month</span>
             </div>
-            <ul class="features-list">
-              <li><span>✓</span> Full access to all gym floors</li>
-              <li><span>✓</span> Free weights & cardio machines</li>
-              <li><span>✓</span> Locker & shower facilities</li>
-              <li><span>✓</span> Complimentary general trainer guidance</li>
+            <ul class="perks-list">
+              <li><span>✓</span> Full access to strength floor & cardio</li>
+              <li><span>✓</span> Eleiko racks & 50 kg dumbbell sets</li>
+              <li><span>✓</span> Hot showers & locker rooms</li>
+              <li><span>✓</span> General coach floor assistance</li>
             </ul>
-            <button class="btn btn-secondary trigger-modal" style="width:100%;">Select 1 Month</button>
+            <button class="btn-pill btn-dark trigger-modal" style="width:100%; font-size:0.8rem; padding:0.9rem;">
+              Select 1 Month
+            </button>
           </div>
 
           <!-- 3 Months (Featured) -->
-          <div class="pricing-card featured">
-            <div class="featured-badge">Most Popular</div>
-            <h3 class="pricing-title">3 Months</h3>
-            <p class="pricing-sub">Recommended for meaningful, visible results.</p>
-            <div class="price-wrap">
-              <span class="currency">₹</span>
-              <span class="amount">6,499</span>
-              <span class="period">/ 3 months</span>
+          <div class="plan-card featured">
+            <div class="featured-pill">Most Popular</div>
+            <h3 class="plan-name">3 Months</h3>
+            <p class="plan-sub">Our recommended transformation cycle.</p>
+            <div class="price-box">
+              <span class="price-currency">₹</span>
+              <span class="price-value">6,499</span>
+              <span class="price-cycle">/ 3 months</span>
             </div>
-            <ul class="features-list">
-              <li><span>✓</span> <strong>All 1-Month plan benefits</strong></li>
+            <ul class="perks-list">
+              <li><span>✓</span> <strong>All 1-Month privileges included</strong></li>
               <li><span>✓</span> Save ₹1,000 on quarterly commitment</li>
-              <li><span>✓</span> 1 Free InBody body composition scan</li>
-              <li><span>✓</span> Personalized workout routine sheet</li>
+              <li><span>✓</span> 1 InBody body composition scan</li>
+              <li><span>✓</span> Custom workout & macro split sheet</li>
             </ul>
-            <button class="btn btn-accent trigger-modal" style="width:100%;">Select 3 Months</button>
+            <button class="btn-pill btn-light trigger-modal" style="width:100%; font-size:0.8rem; padding:0.9rem;">
+              Join Quarterly
+            </button>
           </div>
 
           <!-- 12 Months -->
-          <div class="pricing-card">
-            <h3 class="pricing-title">12 Months</h3>
-            <p class="pricing-sub">Best value for dedicated fitness enthusiasts.</p>
-            <div class="price-wrap">
-              <span class="currency">₹</span>
-              <span class="amount">18,999</span>
-              <span class="period">/ year</span>
+          <div class="plan-card">
+            <h3 class="plan-name">12 Months</h3>
+            <p class="plan-sub">Maximum value for committed athletes.</p>
+            <div class="price-box">
+              <span class="price-currency">₹</span>
+              <span class="price-value">18,999</span>
+              <span class="price-cycle">/ year</span>
             </div>
-            <ul class="features-list">
-              <li><span>✓</span> <strong>Full 365 days unlimited access</strong></li>
-              <li><span>✓</span> 2 Free personal training sessions</li>
-              <li><span>✓</span> Unlimited steam room access</li>
-              <li><span>✓</span> 3 Guest passes for friends</li>
+            <ul class="perks-list">
+              <li><span>✓</span> <strong>Full 365 days unlimited studio access</strong></li>
+              <li><span>✓</span> 2 Free private personal training sessions</li>
+              <li><span>✓</span> Unlimited eucalyptus steam access</li>
+              <li><span>✓</span> 3 Guest passes for training partners</li>
             </ul>
-            <button class="btn btn-secondary trigger-modal" style="width:100%;">Select 12 Months</button>
+            <button class="btn-pill btn-dark trigger-modal" style="width:100%; font-size:0.8rem; padding:0.9rem;">
+              Join Annual
+            </button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         LOCATION & CONTACT
+         VISIT & LOCATION
          ========================================================================== -->
-    <section class="section" id="contact">
+    <section class="section" id="visit">
       <div class="container">
-        <div class="contact-grid">
+        <div class="visit-box">
           <div>
-            <span class="section-tag">Visit In Person</span>
-            <h2 class="section-title">FIND US IN INDIRANAGAR</h2>
-            <p style="color:var(--text-muted); line-height:1.65; margin-top:0.8rem;">
-              Drop in anytime during operating hours for a complimentary walkthrough and consultation with our fitness team.
+            <span class="section-tag">Urban Location</span>
+            <h2 class="section-title" style="margin-bottom:1rem;">Visit The Studio</h2>
+            <p style="color:var(--text-muted); line-height:1.6; margin-bottom:2rem;">
+              Located in the heart of Indiranagar. Feel free to walk in for a facility tour or drop in for a trial workout session.
             </p>
 
-            <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
-              <a href="https://wa.me/919876543210?text=Hi%20Pulse%20Fitness!%20I%20am%20interested%20in%20visiting%20today." 
-                 target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
-                💬 Chat on WhatsApp
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="https://wa.me/919876543210?text=Hi%20R/NESS!%20I%20am%20coming%20for%20a%20studio%20tour%20today." 
+                 target="_blank" rel="noopener noreferrer" class="btn-pill btn-light">
+                💬 WhatsApp Concierge
               </a>
-              <a href="tel:+919876543210" class="btn btn-secondary">
-                📞 Call +91 98765 43210
-              </a>
+              <button class="btn-pill btn-dark trigger-modal">
+                Book a Spot
+              </button>
             </div>
           </div>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:2rem;">
-            <div class="contact-info-list">
-              <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <div class="contact-details">
-                  <h4>Gym Location</h4>
-                  <p>#42, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038</p>
-                </div>
+          <div class="visit-details">
+            <div class="visit-item">
+              <div class="icon">📍</div>
+              <div>
+                <h4>Studio Address</h4>
+                <p>#42, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038</p>
               </div>
+            </div>
 
-              <div class="contact-item">
-                <div class="contact-icon">🕒</div>
-                <div class="contact-details">
-                  <h4>Working Hours</h4>
-                  <p>Monday – Saturday: 6:00 AM – 10:30 PM<br>Sunday: 7:00 AM – 8:00 PM</p>
-                </div>
+            <div class="visit-item">
+              <div class="icon">🕒</div>
+              <div>
+                <h4>Operating Hours</h4>
+                <p>Monday – Saturday: 6:00 AM – 10:30 PM<br>Sunday: 7:00 AM – 8:00 PM</p>
               </div>
+            </div>
 
-              <div class="contact-item">
-                <div class="contact-icon">✉️</div>
-                <div class="contact-details">
-                  <h4>Email</h4>
-                  <p>hello@pulsefitness.in</p>
-                </div>
+            <div class="visit-item">
+              <div class="icon">📞</div>
+              <div>
+                <h4>Direct Contact</h4>
+                <p>+91 98765 43210 • hello@rness.fit</p>
               </div>
             </div>
           </div>
@@ -310,46 +301,46 @@
        FOOTER
        ========================================================================== -->
   <footer class="site-footer">
-    <div class="container footer-wrap">
-      <div>© 2026 Pulse Fitness Club. All Rights Reserved.</div>
-      <div style="display:flex; gap:1.5rem;">
-        <a href="#facilities" class="nav-link">Facilities</a>
-        <a href="#trainers" class="nav-link">Trainers</a>
-        <a href="#memberships" class="nav-link">Plans</a>
-        <a href="#contact" class="nav-link">Contact</a>
+    <div class="container footer-row">
+      <div>© 2026 R/NESS. All Rights Reserved.</div>
+      <div style="display:flex; gap:1.8rem;">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#coaches" class="nav-link">Coaches</a>
+        <a href="#plans" class="nav-link">Memberships</a>
+        <a href="#visit" class="nav-link">Visit</a>
       </div>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       MODAL: QUICK MEMBERSHIP INQUIRY
+       MODAL: BOOK A SPOT
        ========================================================================== -->
-  <div class="modal-backdrop" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
     <div class="modal-box">
       <button class="modal-close" id="modalCloseBtn" aria-label="Close dialog">✕</button>
 
-      <h3 id="modalTitle" style="font-size:1.4rem; margin-bottom:0.4rem;">Get Started</h3>
+      <h3 id="modalHeading" style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:0.4rem;">Book a Spot</h3>
       <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.5rem;">
-        Enter your details to connect with our Indiranagar gym team directly on WhatsApp.
+        Enter your details to instantly connect with our Indiranagar studio on WhatsApp.
       </p>
 
-      <form id="contactForm">
-        <label for="userName" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-muted);">Full Name</label>
-        <input type="text" id="userName" class="input-clean" placeholder="e.g. Aditya Sharma" required>
+      <form id="bookingForm">
+        <label for="bookName" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">Your Name</label>
+        <input type="text" id="bookName" class="input-field" placeholder="e.g. Aditya Sharma" required>
 
-        <label for="userPhone" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-muted);">Phone / WhatsApp</label>
-        <input type="tel" id="userPhone" class="input-clean" placeholder="+91 98765 00000" required>
+        <label for="bookPhone" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">WhatsApp Mobile</label>
+        <input type="tel" id="bookPhone" class="input-field" placeholder="+91 98765 00000" required>
 
-        <label for="userPlan" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.4rem; color:var(--text-muted);">Interested Plan</label>
-        <select id="userPlan" class="input-clean" style="background:#1a1e29;">
+        <label for="bookPlan" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">Select Plan</label>
+        <select id="bookPlan" class="input-field" style="background:#171a22; cursor:pointer;">
           <option value="3 Months Plan (₹6,499)">3 Months Plan — ₹6,499</option>
           <option value="12 Months Plan (₹18,999)">12 Months Plan — ₹18,999</option>
           <option value="1 Month Plan (₹2,499)">1 Month Plan — ₹2,499</option>
-          <option value="Free Gym Visit">Free Gym Walkthrough</option>
+          <option value="Studio Walkthrough Tour">Studio Walkthrough Tour</option>
         </select>
 
-        <button type="submit" class="btn btn-accent" style="width:100%; padding:0.85rem;">
-          Connect on WhatsApp
+        <button type="submit" class="btn-pill btn-light" style="width:100%; padding:0.95rem; margin-top:0.5rem;">
+          Confirm on WhatsApp 💬
         </button>
       </form>
     </div>

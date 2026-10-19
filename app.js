@@ -1,22 +1,23 @@
 /**
- * PULSE FITNESS // Minimal Interactive Physics Engine
- * Multi-Dumbbell Cursor Repulsion & Clean Site Logic
+ * R/NESS // PULSE FITNESS
+ * Interactive Physics: Scattered 3D Floating Dumbbells & Gold Spheres
+ * (Inspired by the floating coffee beans & golden spheres depth-of-field aesthetic)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
-  initPushableDumbbells();
-  initContactModal();
+  initFloatingElementsPhysics();
+  initBookingModal();
 });
 
 /* ==========================================================================
-   1. MINIMAL NAVBAR
+   1. TOP NAVIGATION
    ========================================================================== */
 function initNavbar() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileMenuClose');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
 
   if (toggleBtn && mobileMenu) {
     toggleBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
@@ -32,17 +33,16 @@ function initNavbar() {
 }
 
 /* ==========================================================================
-   2. INTERACTIVE SMALL DUMBBELLS CURSOR REPULSION PHYSICS
+   2. FLOATING DUMBBELLS & GOLDEN SPHERES CANVAS ENGINE
    ========================================================================== */
-function initPushableDumbbells() {
-  const canvas = document.getElementById('dumbbellsCanvas');
+function initFloatingElementsPhysics() {
+  const canvas = document.getElementById('dumbbellCanvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   let width = (canvas.width = canvas.parentElement.clientWidth);
   let height = (canvas.height = canvas.parentElement.clientHeight);
 
-  // High DPI
   const dpr = window.devicePixelRatio || 1;
   const resizeCanvas = () => {
     width = canvas.parentElement.clientWidth;
@@ -54,8 +54,8 @@ function initPushableDumbbells() {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  // Mouse tracking
-  let mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0, isHovering: false };
+  // Mouse Tracking
+  let mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
 
   window.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
@@ -63,7 +63,6 @@ function initPushableDumbbells() {
     const curY = e.clientY - rect.top;
 
     if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
-      mouse.isHovering = true;
       const dx = curX - mouse.prevX;
       const dy = curY - mouse.prevY;
       mouse.speed = Math.sqrt(dx * dx + dy * dy);
@@ -72,7 +71,6 @@ function initPushableDumbbells() {
       mouse.x = curX;
       mouse.y = curY;
     } else {
-      mouse.isHovering = false;
       mouse.x = -9999;
       mouse.y = -9999;
     }
@@ -83,7 +81,7 @@ function initPushableDumbbells() {
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.touches[0].clientX - rect.left;
       mouse.y = e.touches[0].clientY - rect.top;
-      mouse.isHovering = true;
+      mouse.speed = 10;
     }
   }, { passive: true });
 
@@ -94,172 +92,224 @@ function initPushableDumbbells() {
       const clickX = e.clientX - rect.left;
       const clickY = e.clientY - rect.top;
 
-      dumbbells.forEach(d => {
-        const dx = d.x - clickX;
-        const dy = d.y - clickY;
+      items.forEach(item => {
+        const dx = item.x - clickX;
+        const dy = item.y - clickY;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 260) {
-          const force = (1 - dist / 260) * 22;
-          d.vx += (dx / (dist || 1)) * force;
-          d.vy += (dy / (dist || 1)) * force;
-          d.vRot += (Math.random() - 0.5) * 0.4;
+        if (dist < 280) {
+          const force = (1 - dist / 280) * 25;
+          item.vx += (dx / (dist || 1)) * force;
+          item.vy += (dy / (dist || 1)) * force;
+          item.vRot += (Math.random() - 0.5) * 0.4;
         }
       });
     }
   });
 
-  // Spawn Dumbbell Instances
-  const count = width < 768 ? 20 : 36;
-  const dumbbells = [];
+  // Items Array: 24 Dumbbells + 16 Golden Collars/Spheres (Matching Coffee Beans + Gold Balls layout)
+  const items = [];
+  const numDumbbells = width < 768 ? 16 : 28;
+  const numSpheres = width < 768 ? 10 : 18;
 
-  class DumbbellParticle {
-    constructor() {
-      this.reset(true);
+  class FloatingItem {
+    constructor(type) {
+      this.type = type; // 'dumbbell' or 'sphere'
+      this.init(true);
     }
 
-    reset(initial = false) {
-      // Spawn within or just off screen
-      if (initial) {
+    init(randomPos = false) {
+      if (randomPos) {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
       } else {
-        // Spawn from random border
-        const side = Math.floor(Math.random() * 4);
-        if (side === 0) { this.x = Math.random() * width; this.y = -40; }
-        else if (side === 1) { this.x = width + 40; this.y = Math.random() * height; }
-        else if (side === 2) { this.x = Math.random() * width; this.y = height + 40; }
-        else { this.x = -40; this.y = Math.random() * height; }
+        // Spawn from random border edge
+        const edge = Math.floor(Math.random() * 4);
+        if (edge === 0) { this.x = Math.random() * width; this.y = -50; }
+        else if (edge === 1) { this.x = width + 50; this.y = Math.random() * height; }
+        else if (edge === 2) { this.x = Math.random() * width; this.y = height + 50; }
+        else { this.x = -50; this.y = Math.random() * height; }
       }
 
-      this.length = 24 + Math.random() * 22; // 24px - 46px length
-      this.plateRadius = this.length * 0.38;
-      this.handleRadius = this.length * 0.08;
+      // Depth scaling (foreground vs background)
+      this.depth = 0.65 + Math.random() * 0.75; // 0.65 to 1.4
+      this.size = this.type === 'dumbbell' ? (28 + Math.random() * 22) * this.depth : (8 + Math.random() * 12) * this.depth;
 
-      // Base ambient drifting speed (slow & floating)
-      this.baseVx = (Math.random() - 0.5) * 0.6;
-      this.baseVy = (Math.random() - 0.5) * 0.6;
+      // Ambient drift speed
+      this.baseVx = (Math.random() - 0.5) * 0.35 * this.depth;
+      this.baseVy = (Math.random() - 0.5) * 0.35 * this.depth;
       this.vx = this.baseVx;
       this.vy = this.baseVy;
 
       this.angle = Math.random() * Math.PI * 2;
-      this.vRot = (Math.random() - 0.5) * 0.02;
-
-      this.weightKg = [5, 10, 15, 20, 25][Math.floor(Math.random() * 5)];
-      this.colorTone = Math.random() > 0.4 ? 'silver' : 'gold';
+      this.vRot = (Math.random() - 0.5) * 0.015;
+      this.bobOffset = Math.random() * Math.PI * 2;
     }
 
-    update() {
-      // Repulsion from cursor
+    update(time) {
+      // Repulsion force from cursor
       if (mouse.x > -1000) {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const pushRadius = 140; // Push field radius around cursor
+        const pushRadius = 150 * this.depth;
 
         if (dist < pushRadius && dist > 1) {
-          // Strong exponential push force
           const intensity = Math.pow(1 - dist / pushRadius, 2);
-          const pushForce = intensity * 12 + Math.min(mouse.speed * 0.15, 8);
+          const pushForce = intensity * 14 + Math.min(mouse.speed * 0.2, 10);
 
           this.vx += (dx / dist) * pushForce;
           this.vy += (dy / dist) * pushForce;
-          this.vRot += (Math.random() - 0.5) * 0.25;
+          this.vRot += (Math.random() - 0.5) * 0.2;
         }
       }
 
-      // Air resistance / friction damping
+      // Physics drag/friction
       this.vx *= 0.94;
       this.vy *= 0.94;
       this.vRot *= 0.96;
 
-      // Re-apply subtle ambient drift
+      // Natural bobbing
+      const bobY = Math.sin(time * 1.5 + this.bobOffset) * 0.25;
+
       this.x += this.vx + this.baseVx;
-      this.y += this.vy + this.baseVy;
+      this.y += this.vy + this.baseVy + bobY;
       this.angle += this.vRot;
 
-      // If pushed completely out of screen bounds by cursor, respawn smoothly
-      const margin = 80;
+      // When pushed out of the screen bounds, smoothly re-spawn from opposite border
+      const margin = 70;
       if (this.x < -margin || this.x > width + margin || this.y < -margin || this.y > height + margin) {
-        this.reset(false);
+        this.init(false);
       }
     }
 
     draw(ctx) {
       ctx.save();
       ctx.translate(this.x, this.y);
-      ctx.rotate(this.angle);
 
-      const halfLen = this.length / 2;
-      const pRad = this.plateRadius;
-      const pThick = this.length * 0.16;
+      // Realistic soft drop shadow beneath each floating item (as in reference image)
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+      ctx.shadowBlur = 14 * this.depth;
+      ctx.shadowOffsetY = 8 * this.depth;
 
-      // 1. Central Knurled Steel Handle
-      ctx.fillStyle = '#94a3b8';
-      ctx.beginPath();
-      ctx.roundRect(-halfLen, -this.handleRadius, this.length, this.handleRadius * 2, 2);
-      ctx.fill();
-
-      // Grip shine highlight
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(-halfLen + 4, -this.handleRadius * 0.4, this.length - 8, this.handleRadius * 0.7);
-
-      // 2. Left Plate
-      drawPlate(ctx, -halfLen, pRad, pThick, this.colorTone, this.weightKg);
-
-      // 3. Right Plate
-      drawPlate(ctx, halfLen - pThick, pRad, pThick, this.colorTone, this.weightKg);
+      if (this.type === 'dumbbell') {
+        ctx.rotate(this.angle);
+        drawRealisticDumbbell(ctx, this.size, this.depth);
+      } else {
+        drawGoldenSphere(ctx, this.size);
+      }
 
       ctx.restore();
     }
   }
 
-  function drawPlate(ctx, x, radius, thickness, tone, kg) {
-    // Plate outer border & body
-    ctx.fillStyle = '#1e222d';
+  // Draw Realistic 3D Cast-Iron Dumbbell
+  function drawRealisticDumbbell(ctx, length, depth) {
+    const halfLen = length / 2;
+    const plateRadius = length * 0.42;
+    const plateWidth = length * 0.16;
+    const handleRadius = length * 0.085;
+
+    // 1. Steel Knurled Center Bar
+    const handleGrad = ctx.createLinearGradient(0, -handleRadius, 0, handleRadius);
+    handleGrad.addColorStop(0, '#64748b');
+    handleGrad.addColorStop(0.35, '#cbd5e1');
+    handleGrad.addColorStop(0.5, '#ffffff'); // bright chrome shine
+    handleGrad.addColorStop(0.7, '#94a3b8');
+    handleGrad.addColorStop(1, '#334155');
+
+    ctx.fillStyle = handleGrad;
     ctx.beginPath();
-    ctx.roundRect(x, -radius, thickness, radius * 2, 3);
+    ctx.roundRect(-halfLen, -handleRadius, length, handleRadius * 2, 2);
     ctx.fill();
 
-    // Metallic Rim / Accent
-    ctx.strokeStyle = tone === 'gold' ? '#f59e0b' : '#64748b';
-    ctx.lineWidth = 1.2;
+    // 2. Cast Iron Plates (Left & Right)
+    drawPlate(ctx, -halfLen, plateRadius, plateWidth);
+    drawPlate(ctx, halfLen - plateWidth, plateRadius, plateWidth);
+  }
+
+  function drawPlate(ctx, x, radius, width) {
+    // Plate outer dark cylinder
+    const plateGrad = ctx.createLinearGradient(0, -radius, 0, radius);
+    plateGrad.addColorStop(0, '#1c1f28');
+    plateGrad.addColorStop(0.3, '#2a2f3d');
+    plateGrad.addColorStop(0.7, '#1e222c');
+    plateGrad.addColorStop(1, '#0e1015');
+
+    ctx.fillStyle = plateGrad;
+    ctx.beginPath();
+    ctx.roundRect(x, -radius, width, radius * 2, 4);
+    ctx.fill();
+
+    // Subtle beveled highlight rim
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+    ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Center hub detail
-    ctx.fillStyle = '#334155';
-    ctx.beginPath();
-    ctx.arc(x + thickness / 2, 0, radius * 0.45, 0, Math.PI * 2);
-    ctx.fill();
+    // Outer face gloss accent
+    ctx.fillStyle = 'rgba(212, 163, 115, 0.45)'; // Subtle champagne gold collar ring
+    ctx.fillRect(x + width * 0.4, -radius * 0.35, width * 0.2, radius * 0.7);
   }
 
-  // Initialize particles
-  for (let i = 0; i < count; i++) {
-    dumbbells.push(new DumbbellParticle());
+  // Draw Glossy Golden Sphere (Barbell Collar Bead)
+  function drawGoldenSphere(ctx, radius) {
+    // 3D spherical gradient with specular highlight
+    const sphereGrad = ctx.createRadialGradient(
+      -radius * 0.35, -radius * 0.35, radius * 0.05,
+      0, 0, radius
+    );
+    sphereGrad.addColorStop(0, '#fff4e6');   // hot specular highlight
+    sphereGrad.addColorStop(0.2, '#f6c77d'); // bright gold
+    sphereGrad.addColorStop(0.5, '#d4a373'); // warm amber bronze
+    sphereGrad.addColorStop(0.85, '#99582a'); // rich deep bronze
+    sphereGrad.addColorStop(1, '#432818');   // ambient shadow edge
+
+    ctx.fillStyle = sphereGrad;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Subtle edge rim light
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
   }
+
+  // Initialize Elements
+  for (let i = 0; i < numDumbbells; i++) {
+    items.push(new FloatingItem('dumbbell'));
+  }
+  for (let i = 0; i < numSpheres; i++) {
+    items.push(new FloatingItem('sphere'));
+  }
+
+  // Sort by depth so background items render behind foreground items
+  items.sort((a, b) => a.depth - b.depth);
 
   // Animation Loop
-  const animate = () => {
+  let time = 0;
+  const loop = () => {
     ctx.clearRect(0, 0, width, height);
+    time += 0.02;
 
-    dumbbells.forEach(d => {
-      d.update();
-      d.draw(ctx);
+    items.forEach(item => {
+      item.update(time);
+      item.draw(ctx);
     });
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(loop);
   };
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(loop);
 }
 
 /* ==========================================================================
-   3. CLEAN INQUIRY MODAL & WHATSAPP
+   3. BOOKING MODAL & WHATSAPP
    ========================================================================== */
-function initContactModal() {
-  const modal = document.getElementById('contactModal');
+function initBookingModal() {
+  const modal = document.getElementById('bookingModal');
   const openBtns = document.querySelectorAll('.trigger-modal');
   const closeBtn = document.getElementById('modalCloseBtn');
-  const form = document.getElementById('contactForm');
+  const form = document.getElementById('bookingForm');
 
   openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -280,15 +330,14 @@ function initContactModal() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('userName').value || 'Member';
-      const phone = document.getElementById('userPhone').value || '';
-      const plan = document.getElementById('userPlan').value || 'Gym Membership';
+      const name = document.getElementById('bookName').value || 'Member';
+      const phone = document.getElementById('bookPhone').value || '';
+      const plan = document.getElementById('bookPlan').value || 'Membership';
 
       if (modal) modal.classList.remove('active');
 
-      // Direct WhatsApp redirect
-      const message = encodeURIComponent(`Hi Pulse Fitness! My name is ${name} (${phone}). I would like to inquire about the ${plan} and schedule a free trial walkthrough.`);
-      window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+      const text = encodeURIComponent(`Hi R/NESS! My name is ${name} (${phone}). I would like to book a spot / inquire about the ${plan}.`);
+      window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
       form.reset();
     });
   }
