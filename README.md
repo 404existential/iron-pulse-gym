@@ -1,50 +1,49 @@
-# ⚡ VAJRA IRON // वज्र • The Modern Indian Akhada & Luxury Gym
+# ⚡ PULSE FITNESS • Minimalist Premium Gym & Fitness Club
 
-![Vajra Iron Hero Preview](assets/images/hero.jpg)
-
-**Vajra Iron** is an ultra-minimalist, high-performance website for India's premier luxury strength club and modern Akhada based in Indiranagar, Bengaluru. Built with clean semantic HTML5, modern vanilla CSS3 design systems, and an interactive 3D Canvas engine.
+A clean, modern, responsive website for a premium fitness club based in Indiranagar, Bengaluru. Built with clean semantic HTML5, pure CSS3, and a vanilla JavaScript physics canvas engine.
 
 ---
 
 ## 🌟 Key Features
 
-- **🦾 Interactive 3D Floating Dumbbell in Hero:**
-  - Real-time physics and mouse/touch tracking 3D canvas engine.
-  - Interactive pitch, yaw, and roll responding smoothly to cursor position.
-  - Interactive weight switcher (10 KG, 25 KG, 50 KG) with dynamic plate thickness and knurled steel handle rendering.
-  - Inertial spin friction on drag.
+- **🦾 Multi-Dumbbell Cursor Physics Engine:**
+  - Multiple small floating dumbbells scattered across the hero banner.
+  - Interactive cursor repulsion: when you move your cursor or swipe, the dumbbells get pushed away with realistic physical force and scatter out of the screen.
+  - Interactive click shockwave flings dumbbells outwards with angular spin.
+  - Smooth 60fps hardware-accelerated HTML5 Canvas.
 
-- **🕉️ Traditional Akhada Meets Olympic Iron:**
-  - Ancient Indian strength heritage: Teakwood Mudgars, cast-iron Gadas, and rope climbing.
-  - Olympic Eleiko powerlifting platforms, competition bumper plates, and heavy dumbbell section.
+- **🏋️‍♂️ Minimalist Facility Architecture:**
+  - Free Weights Zone (2.5 kg to 50 kg sets)
+  - Olympic Racks & Competition Platforms
+  - Cardio & Functional Deck
+  - Locker & Steam Suites
 
-- **🇮🇳 Desi High-Protein Nutrition & Ayurvedic Recovery:**
-  - Traditional Indian meal plans (Sattu, Paneer, Sprouted Moong, Curd, Chicken).
-  - Ayurvedic recovery: Herbal eucalyptus steam, cold plunge, Ashwagandha and Shilajit protocols.
+- **👨‍🏫 Certified Trainers:**
+  - Certified coaches with ACE and K-11 certifications focusing on technique and transformation.
 
-- **💳 Clear INR (₹) Memberships — No Redundant Toggles:**
-  - Monthly Pass: ₹2,499 / month
-  - Quarterly Warrior: ₹6,499 / 3 months (Most Popular)
-  - Annual Clan VIP: ₹19,999 / year
+- **💳 Straightforward Pricing in Indian Rupees (₹):**
+  - **1 Month:** ₹2,499
+  - **3 Months:** ₹6,499 (Most Popular)
+  - **12 Months:** ₹18,999
 
-- **💬 Instant WhatsApp Concierge & Inquiry:**
-  - Direct WhatsApp chat integration for seamless membership inquiries and facility walkthrough booking.
+- **💬 Direct WhatsApp Integration:**
+  - One-click contact for inquiries and booking facility walkthroughs.
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
 ```
 iron-pulse-gym/
-├── index.html           # Minimal semantic structure & SEO metadata
-├── styles.css           # Desi gold & dark carbon luxury design system
-├── app.js               # 3D interactive floating dumbbell canvas engine & WhatsApp modal
-├── README.md            # Project overview & documentation
+├── index.html           # Minimal semantic structure
+├── styles.css           # Clean modern CSS
+├── app.js               # Multi-dumbbell cursor repulsion physics & modal
+├── README.md            # Documentation
 └── assets/
     └── images/
-        ├── hero.jpg             # High-res gym interior
-        ├── trainer-alex.jpg     # Coach Vikram Singh
-        └── trainer-elena.jpg    # Coach Ananya Sharma
+        ├── hero.jpg
+        ├── trainer-alex.jpg
+        └── trainer-elena.jpg
 ```
 
 ---
@@ -52,4 +51,4 @@ iron-pulse-gym/
 ## 🚀 Live Demo & Repository
 
 - **GitHub Repository:** [404existential/iron-pulse-gym](https://github.com/404existential/iron-pulse-gym)
-- **Live GitHub Pages:** [https://404existential.github.io/iron-pulse-gym/](https://404existential.github.io/iron-pulse-gym/)
+- **Live Website:** [https://404existential.github.io/iron-pulse-gym/](https://404existential.github.io/iron-pulse-gym/)

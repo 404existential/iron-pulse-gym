@@ -1,31 +1,22 @@
 /**
- * VAJRA IRON // THE MODERN AKHADA
- * Interactive Floating 3D Dumbbell Engine & Minimal Logic
+ * PULSE FITNESS // Minimal Interactive Physics Engine
+ * Multi-Dumbbell Cursor Repulsion & Clean Site Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
-  initFloatingDumbbell();
-  initModalAndWhatsApp();
+  initPushableDumbbells();
+  initContactModal();
 });
 
 /* ==========================================================================
-   1. NAVBAR & MOBILE DRAWER
+   1. MINIMAL NAVBAR
    ========================================================================== */
 function initNavbar() {
-  const header = document.querySelector('.site-header');
   const toggleBtn = document.getElementById('mobileMenuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileMenuClose');
   const navLinks = document.querySelectorAll('.nav-link');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
 
   if (toggleBtn && mobileMenu) {
     toggleBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
@@ -41,17 +32,17 @@ function initNavbar() {
 }
 
 /* ==========================================================================
-   2. INTERACTIVE 3D FLOATING DUMBBELL CANVAS ENGINE
+   2. INTERACTIVE SMALL DUMBBELLS CURSOR REPULSION PHYSICS
    ========================================================================== */
-function initFloatingDumbbell() {
-  const canvas = document.getElementById('dumbbellCanvas');
+function initPushableDumbbells() {
+  const canvas = document.getElementById('dumbbellsCanvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
-  let width = canvas.clientWidth;
-  let height = canvas.clientHeight;
+  let width = (canvas.width = canvas.parentElement.clientWidth);
+  let height = (canvas.height = canvas.parentElement.clientHeight);
 
-  // High DPI resolution support
+  // High DPI
   const dpr = window.devicePixelRatio || 1;
   const resizeCanvas = () => {
     width = canvas.parentElement.clientWidth;
@@ -63,290 +54,212 @@ function initFloatingDumbbell() {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  // Dumbbell State & Physics
-  let targetAngleX = 0;
-  let targetAngleY = 0;
-  let angleX = 0.15;
-  let angleY = -0.3;
-  let angularVelY = 0;
-  let isDragging = false;
-  let lastMouseX = 0;
-  let lastMouseY = 0;
-  let floatTime = 0;
-  let currentWeight = 25; // 10, 25, 50 kg
-
-  // Weight buttons
-  const weightBtns = document.querySelectorAll('.weight-btn');
-  weightBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      weightBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentWeight = parseInt(btn.getAttribute('data-weight'), 10) || 25;
-      showToast(`⚡ Selected: ${currentWeight} KG Cast Iron Vajra Dumbbell`);
-      // Add a quick spin on weight change
-      angularVelY = 0.25;
-    });
-  });
-
-  // Mouse & Touch Interaction
-  const arena = document.querySelector('.hero-section');
-
-  const onPointerMove = (clientX, clientY) => {
-    const rect = canvas.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const deltaX = (clientX - centerX) / (rect.width / 2);
-    const deltaY = (clientY - centerY) / (rect.height / 2);
-
-    if (isDragging) {
-      const moveX = clientX - lastMouseX;
-      angularVelY = moveX * 0.008;
-      angleY += moveX * 0.01;
-      lastMouseX = clientX;
-      lastMouseY = clientY;
-    } else {
-      // Clamped gentle tilt
-      targetAngleX = Math.max(-0.5, Math.min(0.5, -deltaY * 0.4));
-      targetAngleY = Math.max(-0.8, Math.min(0.8, deltaX * 0.6));
-    }
-  };
+  // Mouse tracking
+  let mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0, isHovering: false };
 
   window.addEventListener('mousemove', (e) => {
-    onPointerMove(e.clientX, e.clientY);
-  });
+    const rect = canvas.getBoundingClientRect();
+    const curX = e.clientX - rect.left;
+    const curY = e.clientY - rect.top;
 
-  canvas.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-  });
-
-  window.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
-
-  // Touch handlers
-  canvas.addEventListener('touchstart', (e) => {
-    if (e.touches.length > 0) {
-      isDragging = true;
-      lastMouseX = e.touches[0].clientX;
-      lastMouseY = e.touches[0].clientY;
+    if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+      mouse.isHovering = true;
+      const dx = curX - mouse.prevX;
+      const dy = curY - mouse.prevY;
+      mouse.speed = Math.sqrt(dx * dx + dy * dy);
+      mouse.prevX = mouse.x;
+      mouse.prevY = mouse.y;
+      mouse.x = curX;
+      mouse.y = curY;
+    } else {
+      mouse.isHovering = false;
+      mouse.x = -9999;
+      mouse.y = -9999;
     }
-  }, { passive: true });
+  });
 
   window.addEventListener('touchmove', (e) => {
     if (e.touches.length > 0) {
-      onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - rect.left;
+      mouse.y = e.touches[0].clientY - rect.top;
+      mouse.isHovering = true;
     }
   }, { passive: true });
 
-  window.addEventListener('touchend', () => {
-    isDragging = false;
+  // Click shockwave
+  window.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      dumbbells.forEach(d => {
+        const dx = d.x - clickX;
+        const dy = d.y - clickY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 260) {
+          const force = (1 - dist / 260) * 22;
+          d.vx += (dx / (dist || 1)) * force;
+          d.vy += (dy / (dist || 1)) * force;
+          d.vRot += (Math.random() - 0.5) * 0.4;
+        }
+      });
+    }
   });
 
-  // Render Loop
-  const render = () => {
-    ctx.clearRect(0, 0, width, height);
+  // Spawn Dumbbell Instances
+  const count = width < 768 ? 20 : 36;
+  const dumbbells = [];
 
-    floatTime += 0.025;
-    const floatY = Math.sin(floatTime * 1.5) * 12;
-    const floatTilt = Math.sin(floatTime * 1.1) * 0.05;
-
-    // Apply angular velocity damping
-    if (!isDragging) {
-      angleY += angularVelY;
-      angularVelY *= 0.94; // friction
-      angleX += (targetAngleX - angleX) * 0.08;
-      angleY += (targetAngleY - angleY) * 0.04;
+  class DumbbellParticle {
+    constructor() {
+      this.reset(true);
     }
 
-    const totalAngleX = angleX + floatTilt;
-    const totalAngleY = angleY;
+    reset(initial = false) {
+      // Spawn within or just off screen
+      if (initial) {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+      } else {
+        // Spawn from random border
+        const side = Math.floor(Math.random() * 4);
+        if (side === 0) { this.x = Math.random() * width; this.y = -40; }
+        else if (side === 1) { this.x = width + 40; this.y = Math.random() * height; }
+        else if (side === 2) { this.x = Math.random() * width; this.y = height + 40; }
+        else { this.x = -40; this.y = Math.random() * height; }
+      }
 
-    const centerX = width / 2;
-    const centerY = height / 2 + floatY;
+      this.length = 24 + Math.random() * 22; // 24px - 46px length
+      this.plateRadius = this.length * 0.38;
+      this.handleRadius = this.length * 0.08;
 
-    // 1. Draw subtle contact shadow below
-    ctx.save();
-    ctx.translate(centerX, centerY + 130 - floatY * 0.5);
-    ctx.scale(1, 0.25);
-    const shadowGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, 140);
-    shadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.65)');
-    shadowGrad.addColorStop(0.5, 'rgba(245, 158, 11, 0.08)');
-    shadowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = shadowGrad;
-    ctx.beginPath();
-    ctx.arc(0, 0, 140, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
+      // Base ambient drifting speed (slow & floating)
+      this.baseVx = (Math.random() - 0.5) * 0.6;
+      this.baseVy = (Math.random() - 0.5) * 0.6;
+      this.vx = this.baseVx;
+      this.vy = this.baseVy;
 
-    // 2. Render 3D Dumbbell
-    ctx.save();
-    ctx.translate(centerX, centerY);
+      this.angle = Math.random() * Math.PI * 2;
+      this.vRot = (Math.random() - 0.5) * 0.02;
 
-    // Dynamic scale based on selected weight
-    const scaleFactor = currentWeight === 10 ? 0.88 : currentWeight === 50 ? 1.15 : 1.0;
-    ctx.scale(scaleFactor, scaleFactor);
+      this.weightKg = [5, 10, 15, 20, 25][Math.floor(Math.random() * 5)];
+      this.colorTone = Math.random() > 0.4 ? 'silver' : 'gold';
+    }
 
-    // Apply 3D perspective rotation
-    ctx.rotate(totalAngleY * 0.35);
+    update() {
+      // Repulsion from cursor
+      if (mouse.x > -1000) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pushRadius = 140; // Push field radius around cursor
 
-    drawDumbbell3D(ctx, totalAngleX, totalAngleY, currentWeight);
+        if (dist < pushRadius && dist > 1) {
+          // Strong exponential push force
+          const intensity = Math.pow(1 - dist / pushRadius, 2);
+          const pushForce = intensity * 12 + Math.min(mouse.speed * 0.15, 8);
 
-    ctx.restore();
+          this.vx += (dx / dist) * pushForce;
+          this.vy += (dy / dist) * pushForce;
+          this.vRot += (Math.random() - 0.5) * 0.25;
+        }
+      }
 
-    requestAnimationFrame(render);
-  };
+      // Air resistance / friction damping
+      this.vx *= 0.94;
+      this.vy *= 0.94;
+      this.vRot *= 0.96;
 
-  requestAnimationFrame(render);
-}
+      // Re-apply subtle ambient drift
+      this.x += this.vx + this.baseVx;
+      this.y += this.vy + this.baseVy;
+      this.angle += this.vRot;
 
-/**
- * 3D Dumbbell Renderer
- */
-function drawDumbbell3D(ctx, tiltX, tiltY, weightKg) {
-  const plateRadius = weightKg === 10 ? 68 : weightKg === 50 ? 98 : 82;
-  const plateDepth = weightKg === 10 ? 16 : weightKg === 50 ? 32 : 24;
-  const handleHalfLength = 70;
-  const handleRadius = 14;
+      // If pushed completely out of screen bounds by cursor, respawn smoothly
+      const margin = 80;
+      if (this.x < -margin || this.x > width + margin || this.y < -margin || this.y > height + margin) {
+        this.reset(false);
+      }
+    }
 
-  // Light Vector for dynamic metallic sheen
-  const lightX = Math.cos(tiltY) * 0.7 - Math.sin(tiltX) * 0.3;
-
-  // A. DRAW LEFT WEIGHT PLATES (Back to Front)
-  drawPlateGroup(ctx, -handleHalfLength - plateDepth, plateRadius, plateDepth, -1, tiltX, tiltY, weightKg, lightX);
-
-  // B. DRAW CENTRAL STEEL KNURLED HANDLE
-  drawSteelHandle(ctx, -handleHalfLength, handleHalfLength, handleRadius, tiltX, tiltY, lightX);
-
-  // C. DRAW RIGHT WEIGHT PLATES
-  drawPlateGroup(ctx, handleHalfLength, plateRadius, plateDepth, 1, tiltX, tiltY, weightKg, lightX);
-}
-
-/**
- * Knurled Steel Handle Renderer
- */
-function drawSteelHandle(ctx, x1, x2, radius, tiltX, tiltY, lightX) {
-  const length = x2 - x1;
-
-  // Base metallic cylinder
-  const handleGrad = ctx.createLinearGradient(0, -radius, 0, radius);
-  handleGrad.addColorStop(0, '#52525b');
-  handleGrad.addColorStop(0.3, '#d4d4d8');
-  handleGrad.addColorStop(0.5, '#ffffff'); // bright highlight reflection
-  handleGrad.addColorStop(0.8, '#71717a');
-  handleGrad.addColorStop(1, '#27272a');
-
-  ctx.fillStyle = handleGrad;
-  ctx.beginPath();
-  ctx.roundRect(x1, -radius, length, radius * 2, 4);
-  ctx.fill();
-
-  // Knurling Grip Texture (cross-hatch subtle pattern)
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(x1 + 10, -radius + 1, length - 20, radius * 2 - 2, 2);
-  ctx.clip();
-
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
-  ctx.lineWidth = 1.2;
-  for (let i = x1 + 10; i < x2 - 10; i += 6) {
-    ctx.beginPath();
-    ctx.moveTo(i, -radius);
-    ctx.lineTo(i + 6, radius);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(i + 6, -radius);
-    ctx.lineTo(i, radius);
-    ctx.stroke();
-  }
-
-  // Gold accent rings on collar ends
-  ctx.fillStyle = '#f59e0b';
-  ctx.fillRect(x1 + 4, -radius - 1, 4, radius * 2 + 2);
-  ctx.fillRect(x2 - 8, -radius - 1, 4, radius * 2 + 2);
-
-  ctx.restore();
-}
-
-/**
- * Heavy Cast-Iron Weight Plates Renderer
- */
-function drawPlateGroup(ctx, startX, radius, depth, direction, tiltX, tiltY, weightKg, lightX) {
-  const numPlates = 2; // dual plate stack on each side
-  const singleDepth = depth;
-
-  for (let p = 0; p < numPlates; p++) {
-    const px = direction === 1 ? startX + p * (singleDepth + 4) : startX - p * (singleDepth + 4);
-
-    // Plate rim (cylinder barrel)
-    const rimGrad = ctx.createLinearGradient(0, -radius, 0, radius);
-    rimGrad.addColorStop(0, '#27272a');
-    rimGrad.addColorStop(0.4, '#3f3f46');
-    rimGrad.addColorStop(0.6, '#52525b');
-    rimGrad.addColorStop(1, '#18181b');
-
-    ctx.fillStyle = rimGrad;
-    ctx.beginPath();
-    ctx.roundRect(direction === 1 ? px : px - singleDepth, -radius, singleDepth, radius * 2, 6);
-    ctx.fill();
-
-    // Plate outer face
-    const faceX = direction === 1 ? px + singleDepth : px - singleDepth;
-    const faceGrad = ctx.createRadialGradient(faceX, 0, radius * 0.2, faceX, 0, radius);
-    faceGrad.addColorStop(0, '#2e3342');
-    faceGrad.addColorStop(0.8, '#141721');
-    faceGrad.addColorStop(1, '#090a0f');
-
-    ctx.fillStyle = faceGrad;
-    ctx.beginPath();
-    ctx.ellipse(faceX, 0, 8, radius, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    // Embossed Weight Stamp Text on outer face
-    if (p === numPlates - 1) {
+    draw(ctx) {
       ctx.save();
-      ctx.translate(faceX, 0);
-      ctx.rotate(Math.PI / 2);
-      ctx.fillStyle = '#fbbf24';
-      ctx.font = 'bold 9px "Space Grotesk", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(`${weightKg} KG`, 0, -2);
-      ctx.font = '7px sans-serif';
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.angle);
+
+      const halfLen = this.length / 2;
+      const pRad = this.plateRadius;
+      const pThick = this.length * 0.16;
+
+      // 1. Central Knurled Steel Handle
       ctx.fillStyle = '#94a3b8';
-      ctx.fillText('VAJRA', 0, 7);
+      ctx.beginPath();
+      ctx.roundRect(-halfLen, -this.handleRadius, this.length, this.handleRadius * 2, 2);
+      ctx.fill();
+
+      // Grip shine highlight
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(-halfLen + 4, -this.handleRadius * 0.4, this.length - 8, this.handleRadius * 0.7);
+
+      // 2. Left Plate
+      drawPlate(ctx, -halfLen, pRad, pThick, this.colorTone, this.weightKg);
+
+      // 3. Right Plate
+      drawPlate(ctx, halfLen - pThick, pRad, pThick, this.colorTone, this.weightKg);
+
       ctx.restore();
     }
   }
 
-  // Chrome Collar Cap on end
-  const collarX = direction === 1 ? startX + numPlates * (singleDepth + 4) : startX - numPlates * (singleDepth + 4);
-  const collarGrad = ctx.createLinearGradient(0, -18, 0, 18);
-  collarGrad.addColorStop(0, '#a1a1aa');
-  collarGrad.addColorStop(0.5, '#ffffff');
-  collarGrad.addColorStop(1, '#52525b');
+  function drawPlate(ctx, x, radius, thickness, tone, kg) {
+    // Plate outer border & body
+    ctx.fillStyle = '#1e222d';
+    ctx.beginPath();
+    ctx.roundRect(x, -radius, thickness, radius * 2, 3);
+    ctx.fill();
 
-  ctx.fillStyle = collarGrad;
-  ctx.beginPath();
-  ctx.roundRect(direction === 1 ? collarX : collarX - 10, -18, 10, 36, 3);
-  ctx.fill();
+    // Metallic Rim / Accent
+    ctx.strokeStyle = tone === 'gold' ? '#f59e0b' : '#64748b';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    // Center hub detail
+    ctx.fillStyle = '#334155';
+    ctx.beginPath();
+    ctx.arc(x + thickness / 2, 0, radius * 0.45, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Initialize particles
+  for (let i = 0; i < count; i++) {
+    dumbbells.push(new DumbbellParticle());
+  }
+
+  // Animation Loop
+  const animate = () => {
+    ctx.clearRect(0, 0, width, height);
+
+    dumbbells.forEach(d => {
+      d.update();
+      d.draw(ctx);
+    });
+
+    requestAnimationFrame(animate);
+  };
+
+  requestAnimationFrame(animate);
 }
 
 /* ==========================================================================
-   3. INQUIRY MODAL & WHATSAPP INTEGRATION
+   3. CLEAN INQUIRY MODAL & WHATSAPP
    ========================================================================== */
-function initModalAndWhatsApp() {
-  const modal = document.getElementById('inquiryModal');
-  const openBtns = document.querySelectorAll('.trigger-inquiry-modal');
+function initContactModal() {
+  const modal = document.getElementById('contactModal');
+  const openBtns = document.querySelectorAll('.trigger-modal');
   const closeBtn = document.getElementById('modalCloseBtn');
-  const form = document.getElementById('inquiryForm');
+  const form = document.getElementById('contactForm');
 
   openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -358,7 +271,6 @@ function initModalAndWhatsApp() {
   if (closeBtn && modal) {
     closeBtn.addEventListener('click', () => modal.classList.remove('active'));
   }
-
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.classList.remove('active');
@@ -368,40 +280,16 @@ function initModalAndWhatsApp() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('inqName').value || 'Athlete';
-      const phone = document.getElementById('inqPhone').value || '';
-      const plan = document.getElementById('inqPlan').value;
+      const name = document.getElementById('userName').value || 'Member';
+      const phone = document.getElementById('userPhone').value || '';
+      const plan = document.getElementById('userPlan').value || 'Gym Membership';
 
       if (modal) modal.classList.remove('active');
-      showToast(`🔥 Namaste ${name}! Connecting directly with Vajra Concierge...`);
 
-      // Prepare WhatsApp message
-      const text = encodeURIComponent(`Namaste Vajra Iron Gym! I am ${name} (${phone}). I would like to inquire about the ${plan} membership and schedule a walkthrough.`);
-      const waUrl = `https://wa.me/919876543210?text=${text}`;
-
-      setTimeout(() => {
-        window.open(waUrl, '_blank');
-      }, 700);
-
+      // Direct WhatsApp redirect
+      const message = encodeURIComponent(`Hi Pulse Fitness! My name is ${name} (${phone}). I would like to inquire about the ${plan} and schedule a free trial walkthrough.`);
+      window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
       form.reset();
     });
   }
-}
-
-/* ==========================================================================
-   4. TOAST NOTIFICATION UTILITY
-   ========================================================================== */
-function showToast(message) {
-  let toast = document.querySelector('.toast-notice');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.className = 'toast-notice';
-    document.body.appendChild(toast);
-  }
-  toast.innerHTML = `<span>⚡</span> <span>${message}</span>`;
-  toast.classList.add('show');
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3200);
 }
