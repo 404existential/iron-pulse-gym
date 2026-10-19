@@ -3,878 +3,441 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IRON PULSE // High-Performance Luxury Gym & Athletic Club</title>
-  <meta name="description" content="Iron Pulse Athletics is a premier high-performance luxury training facility engineered for strength, power, and metabolic conditioning. Discover Olympic equipment, elite coaches, and biohacking recovery.">
-  <meta name="keywords" content="gym, luxury fitness, strength training, personal trainer, powerlifting, HIIT, workout split generator, BMI calculator, recovery sauna">
-  <meta property="og:title" content="IRON PULSE // High-Performance Luxury Gym">
-  <meta property="og:description" content="Forge power. Transcend limits. Olympic platforms, cryo recovery, and world-class coaching.">
-  <meta property="og:image" content="assets/images/hero.jpg">
-  <meta property="og:type" content="website">
-
-  <!-- Favicon icon -->
+  <title>VAJRA IRON // वज्र • The Modern Indian Akhada & Luxury Gym</title>
+  <meta name="description" content="India's premier luxury strength club. Traditional Akhada discipline meets Olympic-grade Eleiko plates, certified coaches, and elite recovery in Indiranagar, Bengaluru.">
+  <meta name="keywords" content="Indian gym, Akhada fitness, Bengaluru gym, Vajra Iron, powerlifting India, Gada training, Mudgar, personal trainer, bodybuilding">
+  
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- ==========================================================================
-       NAVIGATION BAR
+       HEADER & NAVIGATION
        ========================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
       <a href="#hero" class="brand-logo" id="brandLogo">
-        <div class="brand-icon">⚡</div>
-        <span>IRON<span class="text-volt">PULSE</span></span>
+        <div class="brand-symbol">व</div>
+        <div>
+          <span>VAJRA <span class="text-gold">IRON</span></span>
+          <span class="brand-devanagari">• वज्र अखाड़ा</span>
+        </div>
       </a>
 
       <nav aria-label="Main Navigation">
-        <ul class="nav-links" id="navLinksList">
-          <li><a href="#programs" class="nav-link">Programs</a></li>
-          <li><a href="#schedule" class="nav-link">Timetable</a></li>
-          <li><a href="#split-generator" class="nav-link">Split Generator</a></li>
-          <li><a href="#calculator" class="nav-link">Biometrics</a></li>
-          <li><a href="#trainers" class="nav-link">Coaches</a></li>
-          <li><a href="#pricing" class="nav-link">Memberships</a></li>
-          <li><a href="#amenities" class="nav-link">Sanctuary</a></li>
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">Philosophy</a></li>
+          <li><a href="#zones" class="nav-link">The Zones</a></li>
+          <li><a href="#coaches" class="nav-link">Coaches</a></li>
+          <li><a href="#nutrition" class="nav-link">Desi Fuel</a></li>
+          <li><a href="#membership" class="nav-link">Plans</a></li>
+          <li><a href="#visit" class="nav-link">Visit Us</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button class="btn btn-secondary trigger-trial-modal" id="navPassBtn">
-          Free 7-Day Pass
-        </button>
-        <a href="#pricing" class="btn btn-volt" id="navJoinBtn">
-          Join Club
+        <a href="https://wa.me/919876543210?text=Namaste%20Vajra%20Iron%20Gym!%20I%20would%20like%20to%20book%20a%20walkthrough." 
+           target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+          💬 WhatsApp
         </a>
-        <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+        <button class="btn btn-gold trigger-inquiry-modal" id="navJoinBtn">
+          Join Akhada
+        </button>
+        <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Open menu">
           ☰
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Menu Drawer -->
-  <div class="mobile-menu-drawer" id="mobileDrawer">
-    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close navigation menu">✕</button>
-    <a href="#programs" class="nav-link">Programs</a>
-    <a href="#schedule" class="nav-link">Schedule</a>
-    <a href="#split-generator" class="nav-link">Split Generator</a>
-    <a href="#calculator" class="nav-link">BMI & Macros</a>
-    <a href="#trainers" class="nav-link">Master Coaches</a>
-    <a href="#pricing" class="nav-link">Memberships</a>
-    <a href="#amenities" class="nav-link">Amenities</a>
-    <div style="margin-top:2rem; display:flex; flex-direction:column; gap:1rem;">
-      <button class="btn btn-volt trigger-trial-modal" style="width:100%;">Claim 7-Day Pass</button>
-      <a href="#pricing" class="btn btn-secondary" style="width:100%;">View Rates</a>
-    </div>
+  <!-- Mobile Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="mobileMenuClose" style="background:none; border:none; color:#fff; font-size:1.6rem; align-self:flex-end; cursor:pointer;">✕</button>
+    <a href="#about" class="nav-link">Philosophy</a>
+    <a href="#zones" class="nav-link">The Zones</a>
+    <a href="#coaches" class="nav-link">Coaches</a>
+    <a href="#nutrition" class="nav-link">Desi Fuel</a>
+    <a href="#membership" class="nav-link">Plans</a>
+    <a href="#visit" class="nav-link">Visit Us</a>
+    <button class="btn btn-gold trigger-inquiry-modal" style="width:100%; margin-top:1rem;">Join Akhada</button>
   </div>
 
-  <main id="mainContent">
+  <main>
 
     <!-- ==========================================================================
-         HERO SECTION
+         HERO SECTION WITH INTERACTIVE 3D FLOATING DUMBBELL
          ========================================================================== -->
     <section class="hero-section" id="hero">
-      <div class="hero-bg">
-        <img src="assets/images/hero.jpg" alt="Iron Pulse Luxury Gym Interior with state-of-the-art strength training equipment">
-      </div>
-      <div class="hero-overlay"></div>
-
-      <div class="container hero-content">
-        <div class="hero-live-status">
-          <span class="pulse-dot"></span>
-          <span>Live Facility Status: <strong>Peak Optimal</strong> (42% Capacity)</span>
-        </div>
-
-        <h1 class="hero-title">
-          FORGE POWER.<br>
-          <span class="text-volt-gradient">TRANSCEND LIMITS.</span>
-        </h1>
-
-        <p class="hero-lead">
-          A high-performance sanctuary engineered for uncompromising athletes, heavy lifters, and everyday champions. Experience Olympic-grade machinery, biometric conditioning, and world-class recovery.
-        </p>
-
-        <div class="hero-buttons">
-          <button class="btn btn-volt trigger-trial-modal" id="heroPassBtn">
-            ⚡ Claim Free 7-Day Pass
-          </button>
-          <a href="#schedule" class="btn btn-secondary" id="heroScheduleBtn">
-            📅 View Daily Timetable
-          </a>
-        </div>
-
-        <div class="hero-stats-grid">
-          <div class="stat-item">
-            <div class="stat-value" data-counter="1850" data-suffix="+">1,850+</div>
-            <div class="stat-label">Active Athletes</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" data-counter="48" data-suffix="">48</div>
-            <div class="stat-label">Olympic Benches & Racks</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" data-counter="18" data-suffix="">18</div>
-            <div class="stat-label">Master CSCS Coaches</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value" data-counter="99" data-suffix=".4%">99.4%</div>
-            <div class="stat-label">Member Transformation</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         PROGRAMS & DISCIPLINES
-         ========================================================================== -->
-    <section class="section" id="programs">
       <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Engineered Training</span>
-          <h2 class="section-title">ELITE DISCIPLINES</h2>
-          <p class="section-desc">
-            Science-backed training programs designed to accelerate muscular hypertrophy, explosive athletic power, and relentless cardiovascular endurance.
-          </p>
-        </div>
-
-        <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">All Programs</button>
-          <button class="filter-btn" data-filter="strength">Strength & Power</button>
-          <button class="filter-btn" data-filter="hiit">MetCon & HIIT</button>
-          <button class="filter-btn" data-filter="combat">Combat & Boxing</button>
-          <button class="filter-btn" data-filter="recovery">Recovery & Biohacking</button>
-        </div>
-
-        <div class="programs-grid" id="programsGrid">
-          <!-- Card 1 -->
-          <article class="program-card" data-category="strength">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge">Popular</span>
-              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=700&q=80" alt="Barbell heavy squat powerlifting training">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 60 Mins</span>
-                <span>🔥 650-800 kcal</span>
-              </div>
-              <h3 class="program-title">Hypertrophy & Power Forge</h3>
-              <p class="program-text">
-                Targeted compound lifting protocols, linear periodization, and tempo-controlled accessory work built to stack dense muscle and raw neurological power.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Intensity Rating</span>
-                  <span class="text-volt">95% Max Load</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 95%;"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="assets/images/trainer-alex.jpg" alt="Coach Alex" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Alex Rivera (CSCS)</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="program-card" data-category="hiit">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge" style="color:#ff7043; border-color:#ff7043;">Metabolic</span>
-              <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?auto=format&fit=crop&w=700&q=80" alt="High intensity interval training with battle ropes and kettlebells">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 45 Mins</span>
-                <span>🔥 750-950 kcal</span>
-              </div>
-              <h3 class="program-title">Vanguard Hybrid MetCon</h3>
-              <p class="program-text">
-                Explosive turf intervals combining Concept2 SkiErgs, assault runners, sled pushes, and ballistic kettlebells for relentless stamina.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Intensity Rating</span>
-                  <span class="text-volt">90% Heart Rate Zone</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 90%;"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="assets/images/trainer-elena.jpg" alt="Coach Elena" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Elena Rostova</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="program-card" data-category="combat">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge" style="color:#e0e7ff; border-color:#818cf8;">Striking</span>
-              <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=700&q=80" alt="Boxer hitting heavy punch bag with hand wraps">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 50 Mins</span>
-                <span>🔥 700-900 kcal</span>
-              </div>
-              <h3 class="program-title">Iron Glove Striking & Bag Blitz</h3>
-              <p class="program-text">
-                Pro-level boxing mechanics, footwork drills, heavy leather bag combos, and high-frequency slip rope conditioning under champion coaches.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Intensity Rating</span>
-                  <span class="text-volt">88% Explosive</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 88%;"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Coach Tariq" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Tariq Sterling</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="program-card" data-category="recovery">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge" style="color:#00e5ff; border-color:#00e5ff;">Restoration</span>
-              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=700&q=80" alt="Luxury recovery infrared sauna and contrast bath lounge">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 45 Mins</span>
-                <span>💧 Cryo & Sauna</span>
-              </div>
-              <h3 class="program-title">Contrast Hydro & Fascial Zen</h3>
-              <p class="program-text">
-                Post-training parasympathetic reset featuring 38°F cold plunge tanks, Finnish dry heat saunas, compression boots, and guided breath therapy.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Restoration Factor</span>
-                  <span class="text-volt">100% Cellular Rejuvenation</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 100%; background: linear-gradient(90deg, #00e5ff, #ccff00);"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="Dr Chloe" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Dr. Chloe Adams</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 5 -->
-          <article class="program-card" data-category="strength">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge">Eleiko Equipped</span>
-              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=80" alt="Olympic weightlifter preparing barbell snatch">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 75 Mins</span>
-                <span>🏋️ Olympic Platform</span>
-              </div>
-              <h3 class="program-title">Olympic Weightlifting Mastery</h3>
-              <p class="program-text">
-                Dedicated Eleiko platform sessions focusing on the Snatch, Clean & Jerk, barbell bar path metrics, and explosive triple-extension mechanics.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Technical & Power Demand</span>
-                  <span class="text-volt">92% Peak Rate of Force</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 92%;"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Marcus Coach" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Marcus Vance (USAW)</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 6 -->
-          <article class="program-card" data-category="hiit">
-            <div class="program-image-wrap">
-              <span class="badge program-card-badge">Agility</span>
-              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=700&q=80" alt="Athletic training on speed ladder and turf">
-            </div>
-            <div class="program-card-body">
-              <div class="program-meta">
-                <span>⏱ 45 Mins</span>
-                <span>⚡ Plyometrics</span>
-              </div>
-              <h3 class="program-title">Speed Turf & Plyo Dynamics</h3>
-              <p class="program-text">
-                Multi-directional acceleration drills, weighted sled drags, box jumps, and deceleration stability designed to build bulletproof athleticism.
-              </p>
-              <div class="intensity-meter">
-                <div class="intensity-labels">
-                  <span>Intensity Rating</span>
-                  <span class="text-volt">85% Lactate Threshold</span>
-                </div>
-                <div class="intensity-bar">
-                  <div class="intensity-fill" style="width: 85%;"></div>
-                </div>
-              </div>
-              <div class="program-card-footer">
-                <div class="coach-preview">
-                  <img src="assets/images/trainer-elena.jpg" alt="Coach Elena" class="coach-avatar-mini">
-                  <span class="coach-name-mini">Elena Rostova</span>
-                </div>
-                <a href="#schedule" class="btn btn-outline-volt" style="padding:0.45rem 0.9rem; font-size:0.75rem;">Timetable</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         TIMETABLE & LIVE RESERVATION
-         ========================================================================== */ -->
-    <section class="section" id="schedule" style="background: rgba(10, 12, 17, 0.6);">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Live Bookings</span>
-          <h2 class="section-title">WEEKLY SCHEDULE</h2>
-          <p class="section-desc">
-            Reserve your spot in high-energy group clinics and specialized strength labs. Real-time slot availability updated dynamically.
-          </p>
-        </div>
-
-        <div class="schedule-controls">
-          <div class="days-tabs" id="daysTabs">
-            <button class="day-tab active" data-day="mon">Monday</button>
-            <button class="day-tab" data-day="tue">Tuesday</button>
-            <button class="day-tab" data-day="wed">Wednesday</button>
-            <button class="day-tab" data-day="thu">Thursday</button>
-            <button class="day-tab" data-day="fri">Friday</button>
-            <button class="day-tab" data-day="sat">Saturday</button>
-            <button class="day-tab" data-day="sun">Sunday</button>
-          </div>
-          <div style="font-size:0.85rem; color:var(--text-muted);">
-            ⚡ Real-time spots sync • Limit 14 athletes/session
-          </div>
-        </div>
-
-        <div class="schedule-table-wrap">
-          <div id="scheduleTableBody">
-            <!-- Dynamic rows injected via app.js -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         INTERACTIVE TOOLS (SPLIT GENERATOR & BMI / MACROS)
-         ========================================================================== -->
-    <section class="section" id="split-generator">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Smart Performance Tools</span>
-          <h2 class="section-title">CUSTOM SPLIT & BIOMETRICS</h2>
-          <p class="section-desc">
-            Generate an algorithmically balanced weekly workout routine or compute your precise caloric and macronutrient targets.
-          </p>
-        </div>
-
-        <div class="tools-grid">
-          <!-- Tool 1: Split Generator -->
-          <div class="tool-card" id="splitToolCard">
-            <div class="tool-header">
-              <span class="badge" style="margin-bottom:0.6rem;">Training Architect</span>
-              <h3>Workout Split Generator</h3>
-              <p>Configure your target goal and training availability to receive a structured routine with exercise recommendations.</p>
+        <div class="hero-grid">
+          
+          <!-- Hero Text -->
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span>⚡ The Modern Akhada</span>
+              <span style="opacity:0.6;">• Indiranagar, Bengaluru</span>
             </div>
 
-            <form id="splitForm">
-              <div class="form-group">
-                <label for="splitGoal">Primary Training Objective</label>
-                <select id="splitGoal" class="select-custom">
-                  <option value="Hypertrophy (Maximum Muscle Growth)" selected>Hypertrophy (Max Muscle Size & Density)</option>
-                  <option value="Raw Strength & Powerlifting">Raw Strength & Powerlifting</option>
-                  <option value="Fat Loss & High Metabolic Shred">Fat Loss & High Metabolic Shred</option>
-                  <option value="Hybrid Athletic Performance">Hybrid Athletic Performance</option>
-                </select>
-              </div>
+            <h1 class="hero-title">
+              DESI STRENGTH.<br>
+              <span class="text-gold-gradient">MODERN IRON.</span>
+            </h1>
 
-              <div class="form-group">
-                <label for="splitDays">Training Frequency per Week</label>
-                <select id="splitDays" class="select-custom">
-                  <option value="3">3 Days (Full Body High Frequency)</option>
-                  <option value="4" selected>4 Days (Upper / Lower Athletic)</option>
-                  <option value="5">5 Days (Push / Pull / Legs + Upper / Lower)</option>
-                  <option value="6">6 Days (Push / Pull / Legs x 2 Elite Volume)</option>
-                </select>
-              </div>
+            <p class="hero-lead">
+              India's premier luxury strength club. Traditional Akhada discipline meets Olympic-grade Eleiko steel, mudgar conditioning, and uncompromising coaching.
+            </p>
 
-              <div class="form-group">
-                <label for="splitLevel">Lifting Experience Tier</label>
-                <select id="splitLevel" class="select-custom">
-                  <option value="Beginner (Under 1 year consistent training)">Beginner (< 1 Year)</option>
-                  <option value="Intermediate (1 - 3 years progressive overload)" selected>Intermediate (1 - 3 Years)</option>
-                  <option value="Advanced Lifter (3+ years structured periodization)">Advanced Athlete (3+ Years)</option>
-                </select>
-              </div>
-
-              <button class="btn btn-volt" id="btnGenerateSplit" style="width:100%;">
-                ⚡ Generate Custom Split Routine
+            <div class="hero-actions">
+              <button class="btn btn-gold trigger-inquiry-modal" id="heroJoinBtn">
+                Get Membership
               </button>
-            </form>
-
-            <div class="split-results" id="splitResultContainer">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-
-          <!-- Tool 2: BMI & Macro Target Calculator -->
-          <div class="tool-card" id="calculator">
-            <div class="tool-header">
-              <span class="badge" style="margin-bottom:0.6rem; color:#00e5ff; border-color:#00e5ff;">Nutritional Engineering</span>
-              <h3>BMI & Target Macro Calculator</h3>
-              <p>Calculate your Body Mass Index, Total Daily Energy Expenditure (TDEE), and optimal grams of protein, carbs, and healthy fats.</p>
+              <a href="https://wa.me/919876543210?text=Namaste%20Vajra%20Iron%20Gym!%20I%20am%20interested%20in%20a%20day%20pass." 
+                 target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                💬 Chat on WhatsApp
+              </a>
             </div>
 
-            <div class="form-group">
-              <label for="calcHeight">
-                <span>Height</span>
-                <span class="slider-value-display" id="heightDisplay">178 cm</span>
-              </label>
-              <input type="range" id="calcHeight" min="130" max="220" value="178" step="1">
-            </div>
-
-            <div class="form-group">
-              <label for="calcWeight">
-                <span>Body Weight</span>
-                <span class="slider-value-display" id="weightDisplay">78 kg</span>
-              </label>
-              <input type="range" id="calcWeight" min="40" max="150" value="78" step="0.5">
-            </div>
-
-            <div class="form-group">
-              <label for="calcActivity">Weekly Activity Level</label>
-              <select id="calcActivity" class="select-custom">
-                <option value="1.375">Light Activity (1-2 gym sessions/wk)</option>
-                <option value="1.55" selected>Moderate Training (3-4 heavy sessions/wk)</option>
-                <option value="1.725">Hard Athlete Training (5-6 sessions/wk)</option>
-                <option value="1.9">Elite Competitive (2x Daily / High Volume)</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Nutrition Strategy Goal</label>
-              <div class="toggle-group">
-                <button type="button" class="toggle-btn goal-toggle" data-goal="shred">Cut (-20%)</button>
-                <button type="button" class="toggle-btn goal-toggle active" data-goal="recomp">Recomp (Maintain)</button>
-                <button type="button" class="toggle-btn goal-toggle" data-goal="bulk">Surplus (+15%)</button>
+            <div class="hero-stats">
+              <div>
+                <div class="stat-number">2,400+</div>
+                <div class="stat-label">Desi Athletes</div>
               </div>
-            </div>
-
-            <div class="calc-result-box">
-              <div class="result-header">
-                <div>
-                  <span style="font-size:0.75rem; color:#9ca3af; text-transform:uppercase; font-weight:700;">BMI Score</span>
-                  <div class="result-score" id="bmiScore">24.6</div>
-                </div>
-                <div style="text-align:right;">
-                  <span class="result-status-badge" id="bmiBadge">Optimal Athlete</span>
-                  <div style="font-size:1.1rem; font-weight:800; color:#fff; margin-top:0.3rem;" id="tdeeCalories">2,680 kcal/day</div>
-                </div>
+              <div>
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Heavy Iron Racks</div>
               </div>
-
-              <div class="macro-bars">
-                <div class="macro-item">
-                  <div class="macro-info">
-                    <span>🍗 Protein Target (2.2g/kg)</span>
-                    <span id="proteinGram" class="text-volt">172g (26%)</span>
-                  </div>
-                  <div class="macro-progress">
-                    <div class="macro-fill-protein" id="proteinFill" style="width: 26%;"></div>
-                  </div>
-                </div>
-
-                <div class="macro-item">
-                  <div class="macro-info">
-                    <span>🍚 Carbohydrates (Fuel)</span>
-                    <span id="carbsGram" style="color:#ff7043;">320g (49%)</span>
-                  </div>
-                  <div class="macro-progress">
-                    <div class="macro-fill-carbs" id="carbsFill" style="width: 49%;"></div>
-                  </div>
-                </div>
-
-                <div class="macro-item">
-                  <div class="macro-info">
-                    <span>🥑 Healthy Fats (Hormone Health)</span>
-                    <span id="fatsGram" style="color:#00e5ff;">74g (25%)</span>
-                  </div>
-                  <div class="macro-progress">
-                    <div class="macro-fill-fats" id="fatsFill" style="width: 25%;"></div>
-                  </div>
-                </div>
+              <div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Clean Heritage</div>
               </div>
             </div>
           </div>
+
+          <!-- Interactive 3D Floating Dumbbell -->
+          <div class="dumbbell-arena">
+            <div class="dumbbell-canvas-container">
+              <canvas id="dumbbellCanvas"></canvas>
+              <div class="dumbbell-interaction-hint">
+                <span>🔄</span> Move cursor or drag to rotate 3D dumbbell
+              </div>
+            </div>
+
+            <!-- Weight Switcher -->
+            <div class="weight-selector" aria-label="Select Dumbbell Weight">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; font-weight:700; margin-right:0.4rem;">Weight:</span>
+              <button class="weight-btn" data-weight="10">10 KG</button>
+              <button class="weight-btn active" data-weight="25">25 KG</button>
+              <button class="weight-btn" data-weight="50">50 KG</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         TRAINERS & COACHES
+         PHILOSOPHY SECTION
          ========================================================================== -->
-    <section class="section" id="trainers" style="background: rgba(10, 12, 17, 0.6);">
+    <section class="section" id="about" style="border-top: 1px solid var(--border-subtle);">
       <div class="container">
         <div class="section-head">
-          <span class="section-tag">World-Class Mentorship</span>
-          <h2 class="section-title">MASTER COACHES</h2>
+          <span class="section-tag">Ancient Roots • Cutting Edge</span>
+          <h2 class="section-title">THE VAJRA PHILOSOPHY</h2>
           <p class="section-desc">
-            Certified CSCS practitioners, Olympic weightlifting champions, and biomechanics specialists dedicated to maximizing your physical peak.
+            We believe true strength doesn't come from fragile aesthetics. It comes from the grit of the Indian Akhada, forged on heavy cast iron and timeless functional movement.
           </p>
         </div>
 
-        <div class="trainers-grid">
-          <!-- Trainer 1 -->
-          <article class="trainer-card">
-            <div class="trainer-img-wrap">
-              <img src="assets/images/trainer-alex.jpg" alt="Head Strength Coach Alex Rivera posing in the gym">
-              <div class="trainer-overlay-tag">Head Strength Director</div>
-            </div>
-            <div class="trainer-body">
-              <h3 class="trainer-name">Alex Rivera</h3>
-              <div class="trainer-role">CSCS • Ex-Olympic S&C Coach</div>
-              <p class="trainer-bio">
-                12+ years optimizing national powerlifters and pro athletes. Specializes in barbell biomechanics, bar velocity tracking, and high-load muscular hypertrophy.
-              </p>
-              <div class="trainer-specialties">
-                <span>Powerlifting</span>
-                <span>Barbell Speed</span>
-                <span>Hypertrophy</span>
-              </div>
-              <div class="trainer-footer">
-                <span style="font-size:0.85rem; font-weight:700; color:#fff;">⭐ 4.98 (140+ reviews)</span>
-                <button class="btn btn-outline-volt trigger-trial-modal" style="padding:0.4rem 0.8rem; font-size:0.75rem;">Book PT</button>
-              </div>
-            </div>
-          </article>
+        <div class="zones-grid">
+          <div class="zone-card">
+            <div class="zone-icon">🕉️</div>
+            <h3 class="zone-title">Akhada Heritage</h3>
+            <p class="zone-text">
+              Embodying the warrior spirit of traditional kushti and Indian wrestling. Building bulletproof joints, rotational grip power, and unshakable discipline.
+            </p>
+            <span class="zone-highlight">Gada • Mudgar • Indian Clubs</span>
+          </div>
 
-          <!-- Trainer 2 -->
-          <article class="trainer-card">
-            <div class="trainer-img-wrap">
-              <img src="assets/images/trainer-elena.jpg" alt="Master Performance Trainer Elena Rostova smiling in modern gym">
-              <div class="trainer-overlay-tag">Master MetCon Lead</div>
-            </div>
-            <div class="trainer-body">
-              <h3 class="trainer-name">Elena Rostova</h3>
-              <div class="trainer-role">NASM-CPT • Functional Endurance Pro</div>
-              <p class="trainer-bio">
-                Hybrid athlete specialist focusing on aerobic capacity, metabolic conditioning circuits, and injury prevention through joint resilience.
-              </p>
-              <div class="trainer-specialties">
-                <span>HIIT Circuits</span>
-                <span>Kettlebell Flow</span>
-                <span>Mobility</span>
-              </div>
-              <div class="trainer-footer">
-                <span style="font-size:0.85rem; font-weight:700; color:#fff;">⭐ 5.0 (185+ reviews)</span>
-                <button class="btn btn-outline-volt trigger-trial-modal" style="padding:0.4rem 0.8rem; font-size:0.75rem;">Book PT</button>
-              </div>
-            </div>
-          </article>
+          <div class="zone-card">
+            <div class="zone-icon">🏋️‍♂️</div>
+            <h3 class="zone-title">Precision Olympic Steel</h3>
+            <p class="zone-text">
+              Equipped with calibrated Eleiko barbell platforms, competition bumper plates, Texas power bars, and custom dumbbell racks up to 60 kg.
+            </p>
+            <span class="zone-highlight">Powerlifting & Hypertrophy</span>
+          </div>
 
-          <!-- Trainer 3 -->
-          <article class="trainer-card">
-            <div class="trainer-img-wrap">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="Dr Chloe Adams in sports recovery lab">
-              <div class="trainer-overlay-tag">Biohacking & Recovery Director</div>
-            </div>
-            <div class="trainer-body">
-              <h3 class="trainer-name">Dr. Chloe Adams</h3>
-              <div class="trainer-role">DPT • Fascial Movement Specialist</div>
-              <p class="trainer-bio">
-                Doctor of Physical Therapy and human recovery engineer. Integrates cold contrast therapy, dry needling, and corrective spinal alignment.
-              </p>
-              <div class="trainer-specialties">
-                <span>Cold Plunge</span>
-                <span>Infrared Therapy</span>
-                <span>Rehab</span>
-              </div>
-              <div class="trainer-footer">
-                <span style="font-size:0.85rem; font-weight:700; color:#fff;">⭐ 4.96 (110+ reviews)</span>
-                <button class="btn btn-outline-volt trigger-trial-modal" style="padding:0.4rem 0.8rem; font-size:0.75rem;">Book PT</button>
-              </div>
-            </div>
-          </article>
-
-          <!-- Trainer 4 -->
-          <article class="trainer-card">
-            <div class="trainer-img-wrap">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Boxing trainer Tariq Sterling ready for session">
-              <div class="trainer-overlay-tag">Combat Sports Lead</div>
-            </div>
-            <div class="trainer-body">
-              <h3 class="trainer-name">Tariq Sterling</h3>
-              <div class="trainer-role">Golden Gloves Champ • Striking Coach</div>
-              <p class="trainer-bio">
-                Former professional welterweight striker. Trains fighters and fitness enthusiasts in razor-sharp timing, shoulder endurance, and head movement.
-              </p>
-              <div class="trainer-specialties">
-                <span>Sweet Science</span>
-                <span>Mitt Work</span>
-                <span>Combat Cardio</span>
-              </div>
-              <div class="trainer-footer">
-                <span style="font-size:0.85rem; font-weight:700; color:#fff;">⭐ 4.99 (210+ reviews)</span>
-                <button class="btn btn-outline-volt trigger-trial-modal" style="padding:0.4rem 0.8rem; font-size:0.75rem;">Book PT</button>
-              </div>
-            </div>
-          </article>
+          <div class="zone-card">
+            <div class="zone-icon">🌿</div>
+            <h3 class="zone-title">Ayurvedic Recovery</h3>
+            <p class="zone-text">
+              Herbal eucalyptus steam rooms, ice plunge contrast therapy, and specialized sports massage to optimize muscle recovery and joint longevity.
+            </p>
+            <span class="zone-highlight">Deep Muscle Restoration</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         SANCTUARY AMENITIES
+         THE ZONES
          ========================================================================== -->
-    <section class="section" id="amenities">
+    <section class="section" id="zones" style="background: rgba(10, 12, 17, 0.5);">
       <div class="container">
         <div class="section-head">
-          <span class="section-tag">Unrivaled Infrastructure</span>
-          <h2 class="section-title">THE FACILITY SANCTUARY</h2>
+          <span class="section-tag">Facility Tour</span>
+          <h2 class="section-title">TRAINING GROUNDS</h2>
           <p class="section-desc">
-            35,000 square feet of architectural excellence equipped with cutting-edge machinery and luxurious post-workout restoration amenities.
+            Four specialized zones across 20,000 sq ft designed to push every dimension of physical capability.
           </p>
         </div>
 
-        <div class="amenities-grid">
-          <div class="amenity-card">
-            <div class="amenity-icon">🏋️‍♂️</div>
-            <h3 class="amenity-title">Eleiko Competition Zone</h3>
-            <p class="amenity-desc">Custom Olympic platforms, calibrated IWF competition discs, Ohio power bars, and specialty cambered bars.</p>
+        <div class="zones-grid">
+          <div class="zone-card">
+            <div class="zone-icon">⚡</div>
+            <h3 class="zone-title">Heavy Iron Floor</h3>
+            <p class="zone-text">
+              12 dedicated power racks, deadlift platforms with band pegs, adjustable benches, and an extensive free-weight section with dumbbells in 2.5 kg increments.
+            </p>
           </div>
 
-          <div class="amenity-card">
-            <div class="amenity-icon">❄️</div>
-            <h3 class="amenity-title">Contrast Hydro & Cryo</h3>
-            <p class="amenity-desc">Sub-zero whole body cryotherapy cabins and triple filtered 38°F chilled mineral cold plunge tubs.</p>
+          <div class="zone-card">
+            <div class="zone-icon">🪵</div>
+            <h3 class="zone-title">Traditional Akhada Turf</h3>
+            <p class="zone-text">
+              Solid teakwood Mudgars, cast-iron Gadas (10kg to 35kg), heavy tractor tires, climbing ropes, and a 40-meter turf track for sled pushes.
+            </p>
           </div>
 
-          <div class="amenity-card">
-            <div class="amenity-icon">🔥</div>
-            <h3 class="amenity-title">Nordic Infrared Saunas</h3>
-            <p class="amenity-desc">Full spectrum medical-grade infrared saunas engineered to accelerate heat shock proteins and cellular recovery.</p>
+          <div class="zone-card">
+            <div class="zone-icon">🏃</div>
+            <h3 class="zone-title">Cardio & Conditioning Hub</h3>
+            <p class="zone-text">
+              Zero-motor curved treadmills, Concept2 rowers and SkiErgs, assault bikes, and boxing speed bags for metabolic conditioning.
+            </p>
           </div>
 
-          <div class="amenity-card">
-            <div class="amenity-icon">🏃</div>
-            <h3 class="amenity-title">50-Meter Speed Turf</h3>
-            <p class="amenity-desc">Indoor sprint track complete with torque tank sleds, resistance parachutes, and speed timing gates.</p>
-          </div>
-
-          <div class="amenity-card">
-            <div class="amenity-icon">🥤</div>
-            <h3 class="amenity-title">Macro Fuel Protein Bar</h3>
-            <p class="amenity-desc">Organic cold-pressed adaptogens, electrolyte infusions, grass-fed isolate shakes, and specialty nitro cold brew.</p>
-          </div>
-
-          <div class="amenity-card">
-            <div class="amenity-icon">🚿</div>
-            <h3 class="amenity-title">Executive Spa Suites</h3>
-            <p class="amenity-desc">Luxury marble rain showers, Aesop amenities, plush eucalyptus towel service, and biometric secure lockers.</p>
+          <div class="zone-card">
+            <div class="zone-icon">🧖‍♂️</div>
+            <h3 class="zone-title">Steam & Ice Sanctuary</h3>
+            <p class="zone-text">
+              3-stage filtered 4°C cold plunge tubs, aromatic Ayurvedic steam suites, and luxury dressing rooms with rainfall showers.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         MEMBERSHIP & PRICING
+         AUTHENTIC INDIAN COACHES
          ========================================================================== -->
-    <section class="section" id="pricing" style="background: rgba(10, 12, 17, 0.6);">
+    <section class="section" id="coaches">
       <div class="container">
         <div class="section-head">
-          <span class="section-tag">Transparent Commitment</span>
+          <span class="section-tag">Master Mentors</span>
+          <h2 class="section-title">THE VAJRA COACHES</h2>
+          <p class="section-desc">
+            Champions in national powerlifting, traditional Akhada kushti, and clinical sports conditioning.
+          </p>
+        </div>
+
+        <div class="coaches-grid">
+          <!-- Coach 1 -->
+          <article class="coach-card">
+            <div class="coach-image-wrap">
+              <img src="assets/images/trainer-alex.jpg" alt="Coach Vikram Singh national powerlifter">
+              <div class="coach-badge">Head Strength Director</div>
+            </div>
+            <div class="coach-body">
+              <h3 class="coach-name">Vikram Singh</h3>
+              <div class="coach-role">National Powerlifting Gold Medalist • CSCS</div>
+              <p class="coach-desc">
+                Over 11 years coaching competitive powerlifters and athletes across India. Master of bar path mechanics and progressive overload.
+              </p>
+            </div>
+          </article>
+
+          <!-- Coach 2 -->
+          <article class="coach-card">
+            <div class="coach-image-wrap">
+              <img src="assets/images/trainer-elena.jpg" alt="Coach Ananya Sharma functional strength specialist">
+              <div class="coach-badge">Functional & Mobility Lead</div>
+            </div>
+            <div class="coach-body">
+              <h3 class="coach-name">Ananya Sharma</h3>
+              <div class="coach-role">Olympic Lifting Specialist • K-11 Certified</div>
+              <p class="coach-desc">
+                Specializes in kettlebell flow, functional athletic endurance, core rotational power, and posture restoration for high-stress professionals.
+              </p>
+            </div>
+          </article>
+
+          <!-- Coach 3 -->
+          <article class="coach-card">
+            <div class="coach-image-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Coach Devraj Patil Akhada master">
+              <div class="coach-badge">Traditional Akhada Master</div>
+            </div>
+            <div class="coach-body">
+              <h3 class="coach-name">Devraj Patil</h3>
+              <div class="coach-role">Maharashtra Kesari Finalist • Mudgar Master</div>
+              <p class="coach-desc">
+                Lifelong practitioner of Indian wrestling traditions. Teaches ancient rotational torque, shoulder longevity, and mental grit.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         DESI FUEL & NUTRITION
+         ========================================================================== -->
+    <section class="section" id="nutrition">
+      <div class="container">
+        <div class="nutrition-banner">
+          <div>
+            <span class="section-tag">Ancient Nutrition Wisdom</span>
+            <h2 style="font-size:2.2rem; margin-bottom:1rem;">DESI FUEL BAR & MACROS</h2>
+            <p style="color:var(--text-muted); line-height:1.65;">
+              Nutrition tailored for Indian physiology. Whether vegetarian or non-vegetarian, our nutrition team formulates plans that integrate your cultural meals with optimal protein targets.
+            </p>
+          </div>
+          <div>
+            <ul class="nutrition-perks">
+              <li><span>✓</span> <strong>Sattu & Whey Blends:</strong> Pure roasted chana & isolate protein post-workout.</li>
+              <li><span>✓</span> <strong>Vegetarian Macro Blueprints:</strong> Paneer, soya, dal, sprouted moong & curd balance.</li>
+              <li><span>✓</span> <strong>Ayurvedic Ashwagandha & Shilajit:</strong> Natural recovery & cortisol reduction.</li>
+              <li><span>✓</span> <strong>Electrolyte Shikanji:</strong> Fresh lime, black salt, and coconut water hydration.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MEMBERSHIP PRICING (INR - DIRECT & MINIMAL)
+         ========================================================================== -->
+    <section class="section" id="membership" style="background: rgba(10, 12, 17, 0.5);">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">Direct Pricing • No Hidden Fees</span>
           <h2 class="section-title">MEMBERSHIP TIERS</h2>
           <p class="section-desc">
-            No initiation fees. No hidden lock-in contracts. Choose the level of access that aligns with your pursuit of excellence.
+            Straightforward plans in Indian Rupees with complete floor access, lockers, and expert floor assistance.
           </p>
-        </div>
-
-        <div class="pricing-billing-switch">
-          <span class="switch-label active" id="monthlyLabel">Monthly Billing</span>
-          <div class="switch-toggle-btn" id="billingToggleBtn">
-            <div class="switch-toggle-knob"></div>
-          </div>
-          <span class="switch-label" id="annualLabel">
-            Annual Commitment <span class="save-badge">Save 20%</span>
-          </span>
         </div>
 
         <div class="pricing-grid">
-          <!-- Tier 1 -->
+          <!-- Plan 1 -->
           <div class="pricing-card">
-            <h3 class="pricing-plan-name">Club Athlete</h3>
-            <p class="pricing-plan-tagline">Essential access to our strength floor & locker suites.</p>
-            <div class="price-wrap">
-              <span class="currency">$</span>
-              <span class="amount plan-price-value" data-monthly="69" data-annual="55">69</span>
-              <span class="period">/ month</span>
+            <h3 class="pricing-title">Monthly Pass</h3>
+            <p class="pricing-sub">Full access with total month-to-month flexibility.</p>
+            <div class="price-box">
+              <span class="price-symbol">₹</span>
+              <span class="price-number">2,499</span>
+              <span class="price-duration">/ month</span>
             </div>
-            <ul class="features-list">
-              <li class="feature-item"><span class="feature-check">✓</span> Full access to 35,000 sq ft floor</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Eleiko strength & power racks</li>
-              <li class="feature-item"><span class="feature-check">✓</span> High-altitude cardio deck</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Executive locker rooms & showers</li>
-              <li class="feature-item disabled"><span class="feature-check cross">✕</span> Unlimited group coaching</li>
-              <li class="feature-item disabled"><span class="feature-check cross">✕</span> Cold plunge & infrared sauna</li>
+            <ul class="plan-features">
+              <li><span class="plan-check">✓</span> Full access to 20,000 sq ft Iron floor</li>
+              <li><span class="plan-check">✓</span> Eleiko & heavy dumbbell racks</li>
+              <li><span class="plan-check">✓</span> Traditional Akhada turf & Mudgar zone</li>
+              <li><span class="plan-check">✓</span> Steam room & rainfall showers</li>
+              <li><span class="plan-check">✓</span> Secure biometric lockers</li>
             </ul>
-            <button class="btn btn-secondary trigger-trial-modal" style="width:100%;">Choose Athlete</button>
+            <button class="btn btn-secondary trigger-inquiry-modal" style="width:100%;">Select Monthly</button>
           </div>
 
-          <!-- Tier 2 (Featured) -->
+          <!-- Plan 2 (Featured) -->
           <div class="pricing-card featured">
-            <div class="featured-ribbon">Most Popular</div>
-            <h3 class="pricing-plan-name">Vanguard Pro</h3>
-            <p class="pricing-plan-tagline">Complete mastery with unlimited classes & recovery access.</p>
-            <div class="price-wrap">
-              <span class="currency">$</span>
-              <span class="amount plan-price-value" data-monthly="119" data-annual="95">119</span>
-              <span class="period">/ month</span>
+            <div class="featured-tag">Most Popular</div>
+            <h3 class="pricing-title">Quarterly Warrior</h3>
+            <p class="pricing-sub">Our most popular 3-month strength transformation commitment.</p>
+            <div class="price-box">
+              <span class="price-symbol">₹</span>
+              <span class="price-number">6,499</span>
+              <span class="price-duration">/ 3 months</span>
             </div>
-            <ul class="features-list">
-              <li class="feature-item"><span class="feature-check">✓</span> <strong>All Club Athlete perks included</strong></li>
-              <li class="feature-item"><span class="feature-check">✓</span> <strong>Unlimited</strong> group classes & MetCon</li>
-              <li class="feature-item"><span class="feature-check">✓</span> <strong>Unlimited</strong> Cold plunge & Infrared sauna</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Free monthly InBody biometric scan</li>
-              <li class="feature-item"><span class="feature-check">✓</span> 2 Monthly VIP guest passes</li>
-              <li class="feature-item disabled"><span class="feature-check cross">✕</span> 1-on-1 private coaching</li>
+            <ul class="plan-features">
+              <li><span class="plan-check">✓</span> <strong>Everything in Monthly Pass</strong></li>
+              <li><span class="plan-check">✓</span> Save ₹1,000 vs monthly billing</li>
+              <li><span class="plan-check">✓</span> 1 Complimentary InBody composition scan</li>
+              <li><span class="plan-check">✓</span> Personalized Desi macro diet blueprint</li>
+              <li><span class="plan-check">✓</span> 2 Guest workout passes for friends</li>
             </ul>
-            <button class="btn btn-volt trigger-trial-modal" style="width:100%;">Join Vanguard Pro</button>
+            <button class="btn btn-gold trigger-inquiry-modal" style="width:100%;">Join Quarterly</button>
           </div>
 
-          <!-- Tier 3 -->
+          <!-- Plan 3 -->
           <div class="pricing-card">
-            <h3 class="pricing-plan-name">Black Titanium</h3>
-            <p class="pricing-plan-tagline">The pinnacle of athletic performance and personalized care.</p>
-            <div class="price-wrap">
-              <span class="currency">$</span>
-              <span class="amount plan-price-value" data-monthly="199" data-annual="159">199</span>
-              <span class="period">/ month</span>
+            <h3 class="pricing-title">Annual Clan VIP</h3>
+            <p class="pricing-sub">Complete full-year brotherhood for serious lifters.</p>
+            <div class="price-box">
+              <span class="price-symbol">₹</span>
+              <span class="price-number">19,999</span>
+              <span class="price-duration">/ year</span>
             </div>
-            <ul class="features-list">
-              <li class="feature-item"><span class="feature-check">✓</span> <strong>Everything in Vanguard Pro</strong></li>
-              <li class="feature-item"><span class="feature-check">✓</span> <strong>2 Private 1-on-1 PT sessions/month</strong></li>
-              <li class="feature-item"><span class="feature-check">✓</span> Dedicated personalized locker & laundry</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Unlimited cryotherapy chamber credits</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Nutrition blueprint by registered dietitian</li>
-              <li class="feature-item"><span class="feature-check">✓</span> Complimentary Macro Fuel protein shakes</li>
+            <ul class="plan-features">
+              <li><span class="plan-check">✓</span> <strong>Full 365 days priority access</strong></li>
+              <li><span class="plan-check">✓</span> 2 Free 1-on-1 personal training sessions</li>
+              <li><span class="plan-check">✓</span> Unlimited cold plunge & Ayurvedic steam</li>
+              <li><span class="plan-check">✓</span> Dedicated permanent member locker</li>
+              <li><span class="plan-check">✓</span> Vajra Iron merchandise kit (T-shirt & wraps)</li>
             </ul>
-            <button class="btn btn-secondary trigger-trial-modal" style="width:100%;">Join Black Titanium</button>
+            <button class="btn btn-secondary trigger-inquiry-modal" style="width:100%;">Join Annual VIP</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         TESTIMONIALS & TRANSFORMATIONS
+         LOCATION & VISIT
          ========================================================================== -->
-    <section class="section">
+    <section class="section" id="visit">
       <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Proven Results</span>
-          <h2 class="section-title">ATHLETE STORIES</h2>
-          <p class="section-desc">
-            Real progress from members who broke through plateaus and redefined their limits at Iron Pulse.
-          </p>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <div class="quote-icon">“</div>
-            <p class="testimonial-text">
-              The coaching culture here is unlike any luxury gym. The Eleiko platforms are pristine, the programming is grounded in real exercise science, and I added 45 lbs to my squat in 4 months.
+        <div class="visit-grid">
+          <div>
+            <span class="section-tag">Walk In Today</span>
+            <h2 class="section-title" style="margin-bottom:1rem;">EXPERIENCE THE AKHADA</h2>
+            <p style="color:var(--text-muted); line-height:1.65; margin-bottom:2rem;">
+              Located in the heart of Bengaluru's fitness corridor. Ample valet parking available. Feel free to walk in for a facility tour or drop in for a training session.
             </p>
-            <div class="member-profile">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Liam K" class="member-avatar">
-              <div class="member-details">
-                <h4>Liam Kensington</h4>
-                <div class="member-stats">Member 1.5 yrs • +12kg Lean Mass</div>
-              </div>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="https://wa.me/919876543210?text=Namaste!%20I%20am%20coming%20for%20a%20visit%20today." 
+                 target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                💬 WhatsApp Us Now
+              </a>
+              <button class="btn btn-gold trigger-inquiry-modal">
+                Schedule Walkthrough
+              </button>
             </div>
           </div>
 
-          <div class="testimonial-card">
-            <div class="quote-icon">“</div>
-            <p class="testimonial-text">
-              Between the MetCon morning sessions and the cold plunge tanks, my endurance and recovery have skyrocketed. The atmosphere makes you want to give 100% every single rep.
-            </p>
-            <div class="member-profile">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Sarah J" class="member-avatar">
-              <div class="member-details">
-                <h4>Sarah Jenkins</h4>
-                <div class="member-stats">Member 2 yrs • Completed First Hyrox</div>
+          <div class="visit-info-card">
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-text">
+                <h4>Facility Address</h4>
+                <p>#42, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038</p>
               </div>
             </div>
-          </div>
 
-          <div class="testimonial-card">
-            <div class="quote-icon">“</div>
-            <p class="testimonial-text">
-              The personal training with Alex transformed how I view lifting mechanics. No gimmicks, just meticulous biomechanics and relentless encouragement. Worth every single penny.
-            </p>
-            <div class="member-profile">
-              <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=120&q=80" alt="David M" class="member-avatar">
-              <div class="member-details">
-                <h4>David Morales</h4>
-                <div class="member-stats">Member 10 mos • -32 lbs Fat Loss</div>
+            <div class="info-item">
+              <div class="info-icon">🕒</div>
+              <div class="info-text">
+                <h4>Training Hours</h4>
+                <p>Monday – Saturday: 5:30 AM – 11:00 PM<br>Sunday: 7:00 AM – 8:00 PM</p>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ==========================================================================
-         CALL TO ACTION BANNER
-         ========================================================================== -->
-    <section class="section" style="padding-top:2rem;">
-      <div class="container">
-        <div class="cta-banner">
-          <h2>YOUR GREATEST ERA STARTS NOW.</h2>
-          <p>
-            Experience the Iron Pulse difference. Claim your complimentary 7-day all-access guest pass and train alongside the city's most dedicated athletes.
-          </p>
-          <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
-            <button class="btn btn-volt trigger-trial-modal" style="padding:1.1rem 2.5rem; font-size:1.05rem;">
-              ⚡ Claim Your 7-Day Free Pass
-            </button>
-            <a href="tel:+18005554766" class="btn btn-secondary" style="padding:1.1rem 2.2rem; font-size:1.05rem;">
-              📞 Call Concierge
-            </a>
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div class="info-text">
+                <h4>Direct Contact</h4>
+                <p>+91 98765 43210 • concierge@vajrairongym.com</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -887,170 +450,58 @@
        ========================================================================== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#hero" class="brand-logo">
-            <div class="brand-icon">⚡</div>
-            <span>IRON<span class="text-volt">PULSE</span></span>
-          </a>
-          <p>
-            The pinnacle of high-performance physical training, sports science, and biohacking recovery.
-          </p>
-          <div style="margin-top:1.5rem; color:var(--text-secondary); font-size:0.9rem;">
-            📍 742 Performance Way, Metro District<br>
-            🕒 Mon-Fri: 5:00 AM – 11:00 PM<br>
-            🕒 Sat-Sun: 7:00 AM – 9:00 PM
-          </div>
-        </div>
+      <div class="footer-wrap">
+        <a href="#hero" class="brand-logo">
+          <div class="brand-symbol">व</div>
+          <span>VAJRA <span class="text-gold">IRON</span></span>
+        </a>
 
-        <div class="footer-col">
-          <h4>Disciplines</h4>
-          <ul class="footer-links">
-            <li><a href="#programs">Hypertrophy & Power</a></li>
-            <li><a href="#programs">Hybrid MetCon</a></li>
-            <li><a href="#programs">Olympic Lifting</a></li>
-            <li><a href="#programs">Combat Boxing</a></li>
-            <li><a href="#programs">Cold Contrast Hydro</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Club Tools</h4>
-          <ul class="footer-links">
-            <li><a href="#split-generator">Split Routine Generator</a></li>
-            <li><a href="#calculator">BMI & Macro Calculator</a></li>
-            <li><a href="#schedule">Live Class Timetable</a></li>
-            <li><a href="#pricing">Membership Rates</a></li>
-            <li><a href="#amenities">Facility Tour</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <ul class="footer-links">
-            <li><a href="#" class="trigger-trial-modal">VIP Guest Pass</a></li>
-            <li><a href="#trainers">Private Coaching</a></li>
-            <li><a href="tel:+18005554766">+1 (800) 555-IRON</a></li>
-            <li><a href="mailto:concierge@ironpulse.com">concierge@ironpulse.com</a></li>
-          </ul>
+        <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+          <a href="#about" class="nav-link">Philosophy</a>
+          <a href="#zones" class="nav-link">The Zones</a>
+          <a href="#coaches" class="nav-link">Coaches</a>
+          <a href="#membership" class="nav-link">Memberships</a>
+          <a href="#visit" class="nav-link">Location</a>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 Iron Pulse Athletics Club. All Rights Reserved.</div>
-        <div style="display:flex; gap:1.5rem;">
-          <a href="#" style="color:var(--text-dim); text-decoration:none;">Privacy Policy</a>
-          <a href="#" style="color:var(--text-dim); text-decoration:none;">Terms of Service</a>
-          <a href="#" style="color:var(--text-dim); text-decoration:none;">Facility Rules</a>
-        </div>
+      <div class="footer-copy">
+        <div>© 2026 Vajra Iron Athletics Pvt Ltd. Built with pride in India. 🇮🇳</div>
+        <div>Desi Strength • Modern Iron • Unbreakable Discipline</div>
       </div>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       INTERACTIVE AUDIO WORKOUT BEATS WIDGET
+       MODAL: DIRECT WALKTHROUGH & INQUIRY
        ========================================================================== -->
-  <aside class="audio-widget" aria-label="Workout Beats Music Player">
-    <button class="audio-btn" id="audioPlayBtn" aria-label="Play or pause workout soundtrack">▶</button>
-    <div class="audio-info">
-      <span class="audio-title">WORKOUT BEATS</span>
-      <span class="audio-desc">Tap to play gym audio</span>
-    </div>
-    <div class="equalizer-bars" aria-hidden="true">
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-      <span class="eq-bar"></span>
-    </div>
-  </aside>
+  <div class="modal-backdrop" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="inquiryHeading">
+    <div class="modal-box">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close dialog">✕</button>
 
-  <!-- ==========================================================================
-       MODAL 1: 7-DAY VIP GUEST PASS GENERATOR
-       ========================================================================== -->
-  <div class="modal-backdrop" id="trialPassModal" role="dialog" aria-modal="true" aria-labelledby="trialModalHeading">
-    <div class="modal-card">
-      <button class="modal-close-btn" aria-label="Close dialog">✕</button>
-
-      <span class="badge" style="margin-bottom:0.8rem;">Complimentary Access</span>
-      <h3 id="trialModalHeading" style="font-size:1.8rem; margin-bottom:0.6rem;">CLAIM 7-DAY VIP PASS</h3>
-      <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:1.5rem;">
-        Enjoy unlimited floor access, luxury showers, cold plunge recovery, and 1 group coaching clinic on us.
+      <span class="badge" style="margin-bottom:0.8rem;">Vajra Clan</span>
+      <h3 id="inquiryHeading" style="font-size:1.6rem; margin-bottom:0.4rem;">START YOUR JOURNEY</h3>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.5rem;">
+        Enter your details below to instantly connect with our Indiranagar gym concierge on WhatsApp.
       </p>
 
-      <form id="trialPassForm">
-        <div class="form-group">
-          <label for="passUserName">Athlete Full Name</label>
-          <input type="text" id="passUserName" class="input-custom" placeholder="e.g. Jordan Hayes" required>
-        </div>
+      <form id="inquiryForm">
+        <label for="inqName" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">Your Name</label>
+        <input type="text" id="inqName" class="input-minimal" placeholder="e.g. Arjun Patel" required>
 
-        <div class="form-group">
-          <label for="passUserEmail">Email Address</label>
-          <input type="email" id="passUserEmail" class="input-custom" placeholder="jordan@example.com" required>
-        </div>
+        <label for="inqPhone" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">WhatsApp Mobile Number</label>
+        <input type="tel" id="inqPhone" class="input-minimal" placeholder="+91 98765 00000" required>
 
-        <div class="form-group">
-          <label for="passUserPhone">Phone Number</label>
-          <input type="tel" id="passUserPhone" class="input-custom" placeholder="+1 (555) 000-0000" required>
-        </div>
+        <label for="inqPlan" style="display:block; font-size:0.8rem; font-weight:700; text-transform:uppercase; margin-bottom:0.4rem; color:var(--text-muted);">Interested Membership</label>
+        <select id="inqPlan" class="input-minimal" style="background:#161922; cursor:pointer;">
+          <option value="Quarterly Warrior (₹6,499)">Quarterly Warrior — ₹6,499 / 3 mos</option>
+          <option value="Annual Clan VIP (₹19,999)">Annual Clan VIP — ₹19,999 / year</option>
+          <option value="Monthly Pass (₹2,499)">Monthly Pass — ₹2,499 / month</option>
+          <option value="1-Day Drop-In Trial">1-Day Drop-In Walkthrough</option>
+        </select>
 
-        <div class="form-group">
-          <label for="passUserGoal">Primary Fitness Goal</label>
-          <select id="passUserGoal" class="select-custom">
-            <option value="Muscle Building & Strength">Muscle Building & Raw Strength</option>
-            <option value="Fat Loss & Conditioning">Fat Loss & Conditioning</option>
-            <option value="Athletic Speed & Agility">Athletic Speed & Agility</option>
-            <option value="Recovery & Longevity">Recovery & Longevity</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-volt" style="width:100%; margin-top:1rem;">
-          ⚡ Generate Instant Digital Pass
-        </button>
-      </form>
-
-      <div id="passResultWrap" style="display:none;"></div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL 2: CLASS SPOT RESERVATION MODAL
-       ========================================================================== -->
-  <div class="modal-backdrop" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingModalHeading">
-    <div class="modal-card">
-      <button class="modal-close-btn" aria-label="Close booking dialog">✕</button>
-
-      <span class="badge" style="margin-bottom:0.8rem;">Session Reservation</span>
-      <h3 id="bookingModalHeading" style="font-size:1.8rem; margin-bottom:0.4rem;">RESERVE YOUR SPOT</h3>
-      <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border-subtle); border-radius:8px; padding:1rem; margin-bottom:1.4rem;">
-        <h4 id="bookModalClassName" style="font-size:1.15rem; color:#fff; margin-bottom:0.2rem;">Class Name</h4>
-        <div style="display:flex; gap:1.2rem; font-size:0.85rem; color:var(--volt-primary);">
-          <span id="bookModalTime">06:30 AM</span>
-          <span id="bookModalTrainer" style="color:var(--text-secondary);">Coach</span>
-        </div>
-      </div>
-
-      <form id="classBookingForm">
-        <div class="form-group">
-          <label for="bookUserName">Full Name</label>
-          <input type="text" id="bookUserName" class="input-custom" placeholder="e.g. Marcus Miller" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookUserEmail">Email Address</label>
-          <input type="email" id="bookUserEmail" class="input-custom" placeholder="marcus@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="bookUserMemberId">Membership Status</label>
-          <select id="bookUserMemberId" class="select-custom">
-            <option value="guest">First-Time Guest Pass Holder</option>
-            <option value="active">Active Iron Pulse Member</option>
-            <option value="daypass">Single Class Drop-in</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-volt" style="width:100%; margin-top:0.8rem;">
-          🥊 Confirm Slot Reservation
+        <button type="submit" class="btn btn-gold" style="width:100%; padding:0.9rem;">
+          Connect on WhatsApp 💬
         </button>
       </form>
     </div>
