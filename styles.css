@@ -1,7 +1,6 @@
 /* ==========================================================================
-   R/NESS // PULSE FITNESS
+   RAW. // HIGH PERFORMANCE STUDIO
    Ultra-Luxury Minimalist Gym Website
-   Inspired by High-End Editorial Aesthetics & R/NESS
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap');
@@ -16,9 +15,6 @@
   --accent-gold-light: #e6be8a;
   --accent-gold-glow: rgba(212, 163, 115, 0.25);
   
-  --volt-primary: #ccff00;
-  --volt-glow: rgba(204, 255, 0, 0.2);
-
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
@@ -59,6 +55,67 @@ body {
     radial-gradient(circle at 50% 15%, rgba(212, 163, 115, 0.04) 0%, transparent 60%),
     radial-gradient(circle at 85% 65%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
   background-attachment: fixed;
+}
+
+/* ==========================================================================
+   PRELOADER (0.66 SEC)
+   ========================================================================== */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #08090c;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-brand {
+  font-family: var(--font-sans);
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.preloader-brand span {
+  color: var(--accent-gold);
+}
+.preloader-sub {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-gold);
+  margin-bottom: 1.5rem;
+}
+.preloader-line {
+  width: 120px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.preloader-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--accent-gold);
+  animation: preloaderFill 0.66s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes preloaderFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 
 /* Custom Scrollbar */
@@ -107,14 +164,13 @@ body {
 
 .brand-logo {
   font-family: var(--font-sans);
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #fff;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
 }
 .brand-logo span {
   color: var(--accent-gold);
@@ -240,11 +296,11 @@ body {
   z-index: 2;
   max-width: 780px;
   margin: 0 auto;
-  pointer-events: none; /* Allows cursor to interact with canvas behind and through text */
+  pointer-events: none;
 }
 .hero-content a,
 .hero-content button {
-  pointer-events: auto; /* CTAs remain clickable */
+  pointer-events: auto;
 }
 
 /* Elegant Center Pill Tag */
@@ -377,7 +433,7 @@ body {
 }
 
 /* ==========================================================================
-   THE DIFFERENCE / HIGHLIGHTS (Compact & Elegant)
+   THE RAW DIFFERENCE / HIGHLIGHTS
    ========================================================================== */
 .difference-grid {
   display: grid;
@@ -418,7 +474,7 @@ body {
 }
 
 /* ==========================================================================
-   COACHES (Clean, compact 3-column layout)
+   COACHES (SACHIN, RIVA, SAMEER - NO SURNAMES)
    ========================================================================== */
 .coaches-grid {
   display: grid;
@@ -461,6 +517,8 @@ body {
   font-weight: 700;
   margin-bottom: 0.25rem;
   color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 .coach-role {
   font-size: 0.82rem;

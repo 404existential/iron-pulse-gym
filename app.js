@@ -1,17 +1,30 @@
 /**
- * R/NESS // PULSE FITNESS
- * Interactive Physics: Scattered 3D Floating Dumbbells & Gold Spheres
- * (Inspired by the floating coffee beans & golden spheres depth-of-field aesthetic)
+ * RAW. // HIGH PERFORMANCE STUDIO
+ * Preloader (0.66s) & Continuous Toroidal Wrap Physics Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initNavbar();
   initFloatingElementsPhysics();
   initBookingModal();
 });
 
 /* ==========================================================================
-   1. TOP NAVIGATION
+   1. PRELOADER (EXACTLY 0.66 SEC)
+   ========================================================================== */
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+
+  // 0.66 seconds = 660 milliseconds
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+  }, 660);
+}
+
+/* ==========================================================================
+   2. TOP NAVIGATION
    ========================================================================== */
 function initNavbar() {
   const toggleBtn = document.getElementById('mobileMenuToggle');
@@ -33,7 +46,7 @@ function initNavbar() {
 }
 
 /* ==========================================================================
-   2. FLOATING DUMBBELLS & GOLDEN SPHERES CANVAS ENGINE
+   3. FLOATING DUMBBELLS & SPHERES WITH SEAMLESS 4-WAY SCREEN WRAPPING
    ========================================================================== */
 function initFloatingElementsPhysics() {
   const canvas = document.getElementById('dumbbellCanvas');
@@ -97,7 +110,7 @@ function initFloatingElementsPhysics() {
         const dy = item.y - clickY;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 280) {
-          const force = (1 - dist / 280) * 25;
+          const force = (1 - dist / 280) * 26;
           item.vx += (dx / (dist || 1)) * force;
           item.vy += (dy / (dist || 1)) * force;
           item.vRot += (Math.random() - 0.5) * 0.4;
@@ -106,7 +119,6 @@ function initFloatingElementsPhysics() {
     }
   });
 
-  // Items Array: 24 Dumbbells + 16 Golden Collars/Spheres (Matching Coffee Beans + Gold Balls layout)
   const items = [];
   const numDumbbells = width < 768 ? 16 : 28;
   const numSpheres = width < 768 ? 10 : 18;
@@ -114,27 +126,14 @@ function initFloatingElementsPhysics() {
   class FloatingItem {
     constructor(type) {
       this.type = type; // 'dumbbell' or 'sphere'
-      this.init(true);
-    }
-
-    init(randomPos = false) {
-      if (randomPos) {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-      } else {
-        // Spawn from random border edge
-        const edge = Math.floor(Math.random() * 4);
-        if (edge === 0) { this.x = Math.random() * width; this.y = -50; }
-        else if (edge === 1) { this.x = width + 50; this.y = Math.random() * height; }
-        else if (edge === 2) { this.x = Math.random() * width; this.y = height + 50; }
-        else { this.x = -50; this.y = Math.random() * height; }
-      }
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
 
       // Depth scaling (foreground vs background)
       this.depth = 0.65 + Math.random() * 0.75; // 0.65 to 1.4
       this.size = this.type === 'dumbbell' ? (28 + Math.random() * 22) * this.depth : (8 + Math.random() * 12) * this.depth;
 
-      // Ambient drift speed
+      // Ambient drift velocity
       this.baseVx = (Math.random() - 0.5) * 0.35 * this.depth;
       this.baseVy = (Math.random() - 0.5) * 0.35 * this.depth;
       this.vx = this.baseVx;
@@ -155,30 +154,42 @@ function initFloatingElementsPhysics() {
 
         if (dist < pushRadius && dist > 1) {
           const intensity = Math.pow(1 - dist / pushRadius, 2);
-          const pushForce = intensity * 14 + Math.min(mouse.speed * 0.2, 10);
+          const pushForce = intensity * 15 + Math.min(mouse.speed * 0.22, 10);
 
           this.vx += (dx / dist) * pushForce;
           this.vy += (dy / dist) * pushForce;
-          this.vRot += (Math.random() - 0.5) * 0.2;
+          this.vRot += (Math.random() - 0.5) * 0.25;
         }
       }
 
-      // Physics drag/friction
+      // Physics drag / friction
       this.vx *= 0.94;
       this.vy *= 0.94;
       this.vRot *= 0.96;
 
-      // Natural bobbing
+      // Subtle natural bobbing
       const bobY = Math.sin(time * 1.5 + this.bobOffset) * 0.25;
 
       this.x += this.vx + this.baseVx;
       this.y += this.vy + this.baseVy + bobY;
       this.angle += this.vRot;
 
-      // When pushed out of the screen bounds, smoothly re-spawn from opposite border
-      const margin = 70;
-      if (this.x < -margin || this.x > width + margin || this.y < -margin || this.y > height + margin) {
-        this.init(false);
+      // ======================================================================
+      // 4-WAY SEAMLESS TOROIDAL SCREEN-WRAP
+      // When removing at the left, it immediately comes from the right, and
+      // vice versa for top and bottom.
+      // ======================================================================
+      const margin = 35;
+      if (this.x < -margin) {
+        this.x = width + margin;
+      } else if (this.x > width + margin) {
+        this.x = -margin;
+      }
+
+      if (this.y < -margin) {
+        this.y = height + margin;
+      } else if (this.y > height + margin) {
+        this.y = -margin;
       }
     }
 
@@ -186,7 +197,7 @@ function initFloatingElementsPhysics() {
       ctx.save();
       ctx.translate(this.x, this.y);
 
-      // Realistic soft drop shadow beneath each floating item (as in reference image)
+      // Realistic soft drop shadow
       ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
       ctx.shadowBlur = 14 * this.depth;
       ctx.shadowOffsetY = 8 * this.depth;
@@ -209,7 +220,7 @@ function initFloatingElementsPhysics() {
     const plateWidth = length * 0.16;
     const handleRadius = length * 0.085;
 
-    // 1. Steel Knurled Center Bar
+    // Steel Knurled Center Handle
     const handleGrad = ctx.createLinearGradient(0, -handleRadius, 0, handleRadius);
     handleGrad.addColorStop(0, '#64748b');
     handleGrad.addColorStop(0.35, '#cbd5e1');
@@ -222,7 +233,7 @@ function initFloatingElementsPhysics() {
     ctx.roundRect(-halfLen, -handleRadius, length, handleRadius * 2, 2);
     ctx.fill();
 
-    // 2. Cast Iron Plates (Left & Right)
+    // Cast Iron Plates (Left & Right)
     drawPlate(ctx, -halfLen, plateRadius, plateWidth);
     drawPlate(ctx, halfLen - plateWidth, plateRadius, plateWidth);
   }
@@ -246,13 +257,12 @@ function initFloatingElementsPhysics() {
     ctx.stroke();
 
     // Outer face gloss accent
-    ctx.fillStyle = 'rgba(212, 163, 115, 0.45)'; // Subtle champagne gold collar ring
+    ctx.fillStyle = 'rgba(212, 163, 115, 0.45)';
     ctx.fillRect(x + width * 0.4, -radius * 0.35, width * 0.2, radius * 0.7);
   }
 
   // Draw Glossy Golden Sphere (Barbell Collar Bead)
   function drawGoldenSphere(ctx, radius) {
-    // 3D spherical gradient with specular highlight
     const sphereGrad = ctx.createRadialGradient(
       -radius * 0.35, -radius * 0.35, radius * 0.05,
       0, 0, radius
@@ -268,13 +278,12 @@ function initFloatingElementsPhysics() {
     ctx.arc(0, 0, radius, 0, Math.PI * 2);
     ctx.fill();
 
-    // Subtle edge rim light
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
     ctx.lineWidth = 0.8;
     ctx.stroke();
   }
 
-  // Initialize Elements
+  // Spawn instances
   for (let i = 0; i < numDumbbells; i++) {
     items.push(new FloatingItem('dumbbell'));
   }
@@ -282,7 +291,6 @@ function initFloatingElementsPhysics() {
     items.push(new FloatingItem('sphere'));
   }
 
-  // Sort by depth so background items render behind foreground items
   items.sort((a, b) => a.depth - b.depth);
 
   // Animation Loop
@@ -303,7 +311,7 @@ function initFloatingElementsPhysics() {
 }
 
 /* ==========================================================================
-   3. BOOKING MODAL & WHATSAPP
+   4. BOOKING MODAL & WHATSAPP
    ========================================================================== */
 function initBookingModal() {
   const modal = document.getElementById('bookingModal');
@@ -336,7 +344,7 @@ function initBookingModal() {
 
       if (modal) modal.classList.remove('active');
 
-      const text = encodeURIComponent(`Hi R/NESS! My name is ${name} (${phone}). I would like to book a spot / inquire about the ${plan}.`);
+      const text = encodeURIComponent(`Hi RAW! My name is ${name} (${phone}). I would like to book a spot / inquire about the ${plan}.`);
       window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
       form.reset();
     });
